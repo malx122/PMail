@@ -8,4 +8,10 @@ public class Mail {
     public string Subject;
     public string Content;
     public Mailbox Mailbox;
+
+	public string Uri {
+		get {
+			return "/mails/" + Id;
+		}
+	}
 }
