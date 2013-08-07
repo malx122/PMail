@@ -10,9 +10,10 @@ class Program {
         Handle.POST("/add-demo-data", () => {
                 Db.Transaction(() => {
                     var inbox = new Mailbox() { Name = "Inbox" };
-                    new Mail() { Id = 123, Subject = "Hi there", Content = "How are you", Mailbox = inbox };
-                    new Mail() { Id = 124, Subject = "Buy diet pills", Content = "Guaranteed results.", Mailbox = inbox };
-                    new Mail() { Id = 125, Subject = "Business opportunity", Content = "Call me", Mailbox = inbox };
+                    var sender = new MailAddress() { Address = "sender@example.com" };
+                    new Mail() { Id = 123, From = sender, Subject = "Hi there", Content = "How are you", Mailbox = inbox };
+                    new Mail() { Id = 124, From = sender, Subject = "Buy diet pills", Content = "Guaranteed results.", Mailbox = inbox };
+                    new Mail() { Id = 125, From = sender, Subject = "Business opportunity", Content = "Call me", Mailbox = inbox };
                 });
                 return 201;
             });

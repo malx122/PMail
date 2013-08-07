@@ -3,8 +3,8 @@
 [Database]
 public class Mail {
     public int Id;
-    public string From;
-    public string To;
+    public MailAddress From;
+    public MailAddress To;
     public string Subject;
     public string Content;
     public Mailbox Mailbox;
