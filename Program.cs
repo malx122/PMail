@@ -8,7 +8,6 @@ class Program {
         AppsBootstrapper.Bootstrap(@"C:\Users\Marcin\Documents\Puppets\PMail");
 
         Handle.POST("/add-demo-data", () => {
-            Handle.POST("/add-demo-data", () => {
                 Db.Transaction(() => {
                     var inbox = new Mailbox() { Name = "Inbox" };
                     new Mail() { Id = 123, Subject = "Hi there", Content = "How are you", Mailbox = inbox };
@@ -17,7 +16,6 @@ class Program {
                 });
                 return 201;
             });
-        });
 
         Handle.GET("/", () => {
             Master m = new Master() { Html = "master.html" };
