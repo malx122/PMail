@@ -8,33 +8,15 @@ class Program {
         AppsBootstrapper.Bootstrap(@"C:\Users\Marcin\Documents\Puppets\PMail");
 
         Handle.POST("/add-demo-data", () => {
-            Db.Transaction(() => {
-
-                var inbox = new Mailbox() {
-                    Name = "Inbox"
-                };
-
-                new Mail() {
-                    Id = 123,
-                    Subject = "Hi there",
-                    Content = "How are you",
-                    Mailbox = inbox
-                };
-                new Mail() {
-                    Id = 124,
-                    Subject = "Buy viagra",
-                    Content = "It's good for you",
-                    Mailbox = inbox
-                };
-                new Mail() {
-                    Id = 125,
-                    Subject = "Business opportunity in Nigeria",
-                    Content = "My uncle died and somehow you're getting money from this. Good, huh?",
-                    Mailbox = inbox
-                };
-
+            Handle.POST("/add-demo-data", () => {
+                Db.Transaction(() => {
+                    var inbox = new Mailbox() { Name = "Inbox" };
+                    new Mail() { Id = 123, Subject = "Hi there", Content = "How are you", Mailbox = inbox };
+                    new Mail() { Id = 124, Subject = "Buy diet pills", Content = "Guaranteed results.", Mailbox = inbox };
+                    new Mail() { Id = 125, Subject = "Business opportunity", Content = "Call me", Mailbox = inbox };
+                });
+                return 201;
             });
-            return 201;
         });
 
         Handle.GET("/", () => {
