@@ -6,7 +6,9 @@
    Name: ""
   },
   Mails: [{
-    From: "",
+    From: {
+	  Address: ""
+	},
 	Subject: "",
 	Uri: ""
   }],
