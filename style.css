@@ -1,0 +1,156 @@
+﻿body {
+    font: 16px Helvetica, Arial, sans-serif;
+    background: #EDEDF4;
+}
+
+/* Flexbox layout */
+
+#main {
+    min-height: 400px;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-flow: row;
+}
+
+#main article {
+    margin: 0;
+    padding: 5px;
+    background: #A0C2DE;
+    flex: 3 1 auto;
+    order: 2;
+}
+
+#main nav {
+    margin: 0;
+    padding: 5px;
+    background: #064780;
+    color: #FFF;
+    flex: 0 1 200px;
+    order: 1;
+}
+
+nav a {
+    color: #FFF;
+}
+
+#main nav:nth-child(2) {
+    background: #0854C7;
+}
+
+#main aside {
+    margin: 0;
+    padding: 5px;
+    background: #ccccff;
+    flex: 0 1 200px;
+    order: 3;
+}
+
+header, 
+footer {
+    display: block;
+    margin: 0;
+    padding: 5px;
+    background: #FFF;
+}
+
+.mail {
+    background: #EDEDF4;
+    margin: 0.2em;
+    border-radius: 8px;
+}
+
+.mail .header, .mail .body {
+    padding: 15px;
+}
+
+.mail .header {
+    background: #CDEFFF;
+    border-radius: 4px 4px 0 0;
+}
+
+.mail .header h2 {
+    margin: 0;
+}
+
+nav > ul, 
+article > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Forms */
+
+form#newmail > div {
+    display: flex;
+}
+
+form#new-mail label {
+    display: block;
+    line-height: 24px;
+    flex: 1 25% 1;
+}
+
+form#new-mail input {
+    display: block;
+    line-height: 24px;
+    flex: 1 100% 1;
+}
+
+/* Animations */
+
+ .animated {
+    -webkit-animation-duration:1s;
+    -moz-animation-duration:1s;
+    animation-duration:1s;
+    -webkit-animation-fill-mode:both;
+    -moz-animation-fill-mode:both;
+    animation-fill-mode:both;
+}
+
+.flipInY {
+    -webkit-backface-visibility: visible !important;
+    -webkit-animation-name: flipRight;
+    -moz-backface-visibility: visible !important;
+    -moz-animation-name: flipRight;
+    backface-visibility: visible !important;
+    animation-name: flipRight;
+    -webkit-transform-origin-x: 0;
+    -moz-transform-origin-x: 0;
+    transform-origin-x: 0;
+    -webkit-animation-duration:0.25s;
+    -moz-animation-duration:0.25s;
+    animation-duration:0.25s;
+}
+
+@-webkit-keyframes flipRight {
+    0% {
+        -webkit-transform: perspective(400px) rotateY(90deg);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: perspective(400px) rotateY(0deg);
+        opacity: 1;
+    }
+}
+@-moz-keyframes flipRight {
+    0% {
+        -moz-transform: perspective(400px) rotateY(90deg);
+        opacity: 0;
+    }
+    100% {
+        -moz-transform: perspective(400px) rotateY(0deg);
+        opacity: 1;
+    }
+}
+@keyframes flipRight {
+    0% {
+        transform: perspective(400px) rotateY(90deg);
+        opacity: 0;
+    }
+    100% {
+        transform: perspective(400px) rotateY(0deg);
+        opacity: 1;
+    }
+}

@@ -7,17 +7,21 @@
 
     <script src="/mdv_extra.js"></script>
     <link rel="import" href="/x-html.html">
+
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-    <div>Menu</div>
-    <a href="/pmail">PMail</a>
+    <header>
+        Menu
+        <a href="/pmail">PMail</a>
+    </header>
 
-    <template bind id="root">
-        <template bind="{{ApplicationPage}}">
-           <x-html content="{{Html}}"></x-html>
+        <template bind id="root">
+            <template bind="{{ApplicationPage}}">
+               <x-html content="{{Html}}"></x-html>
+            </template>
         </template>
-    </template>
 
 
 <script>

@@ -1,15 +1,26 @@
-﻿<table>
-    <template repeat="{{Mailboxes}}">
-        <tr><td><a href="/mailboxes/{{Name}}">{{Name}}</a></td></tr>
-    </template>
-</table>
+﻿<div id="main">
+    <nav class="animated flipInY">
+        <ul>
+            <template repeat="{{Mailboxes}}">
+                <li><a href="/mailboxes/{{Name}}">{{Name}}</a></li>
+            </template>
+        </ul>
+    </nav>
 
-<table>
-    <template repeat="{{Mails}}">
-        <tr><td><a href="{{Uri}}">{{Subject}}</a> <input value="{{Subject}}"></td></tr>
-    </template>
-</table>
+    <nav class="animated flipInY">
+        <ul>
+            <template repeat="{{Mails}}">
+                <li><a href="{{Uri}}">{{Subject}}</a></li>
+            </template>
+        </ul>
+    </nav>
 
-<template bind="{{FocusedMail}}">
-    <x-html content="{{Html}}"></x-html>
-</template>
+    <article class="animated flipInY">
+        <ul>
+            <template bind="{{FocusedMail}}">
+                <li><x-html content="{{Html}}"></x-html></li>
+            </template>
+        </ul>
+    </article>
+
+</div>
