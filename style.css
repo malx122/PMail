@@ -69,7 +69,8 @@ footer {
     border-radius: 4px 4px 0 0;
 }
 
-.mail .header h2 {
+.mail h2,
+.mail h3 {
     margin: 0;
 }
 
@@ -82,20 +83,52 @@ article > ul {
 
 /* Forms */
 
-form#newmail > div {
+.new-mail {
+    background: #FFF;
+}
+
+form#new-mail .form-row {
     display: flex;
 }
 
 form#new-mail label {
     display: block;
     line-height: 24px;
-    flex: 1 25% 1;
+    flex: 0 1 50px;
+    align-self: center;
+    color: #A9A9A9;
 }
 
 form#new-mail input {
     display: block;
     line-height: 24px;
-    flex: 1 100% 1;
+    flex: 2 2 100%;
+    align-self: center;
+    background: transparent;
+    border-width: 0;
+}
+
+form#new-mail textarea,
+form#new-mail input,
+form#new-mail button {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+form#new-mail textarea,
+form#new-mail input[type=text] {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: inherit;
+    background: transparent;
+    border-width: 0;
+}
+
+.body + .body {
+    border-top: 1px solid #DDD;
+}
+
+form#new-mail textarea {
+    flex: 1 1 100%;
 }
 
 /* Animations */
