@@ -26,8 +26,8 @@
       customElement.innerHTML = '<template bind>' + template + '</template>';
       var model = getModel(customElement);
       customElement.firstChild.model = model;
-      console.log('x-html new template', template);
-      console.log('x-html new model', model);
+      //console.log('x-html new template', template);
+      //console.log('x-html new model', model);
 
       setTimeout(function () {
         var inScripts = customElement.firstChild.content.querySelectorAll('script');
