@@ -49,8 +49,24 @@
     return result;
   }
 
+  var PuppetJsClickTrigger$ = "PuppetJsClickTrigger$";
+
+  function recursiveMarkObjNulls(obj) {
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if (typeof key === "string" && obj[key] === null) {
+          obj[key] = PuppetJsClickTrigger$;
+        }
+        else if (typeof obj[key] === "object") {
+          recursiveMarkObjNulls(obj[key]);
+        }
+      }
+    }
+  }
+
   Puppet.prototype.bootstrap = function (event) {
     this.obj = JSON.parse(event.target.responseText);
+    recursiveMarkObjNulls(this.obj);
     this.observe();
     if (this.callback) {
       this.callback(this.obj);
@@ -76,7 +92,6 @@
    */
   Puppet.prototype.handleResponseCookie = function () {
     var location = readCookie('Location');
-	console.log("found cookie", location);
     if (location) { //if cookie exists and is not empty
       this.referer = location;
       eraseCookie('Location');
@@ -96,10 +111,30 @@
 
   Puppet.prototype.handleLocalChange = function (patches) {
     this.xhr(this.referer || this.remoteUrl, 'application/json-patch+json', JSON.stringify(patches), this.handleRemoteChange.bind(this));
+    var that = this;
+    patches.forEach(function (patch) {
+      if ((patch.op === "add" || patch.op === "replace" || patch.op === "test") && patch.value === null) {
+        that.unobserve();
+        patch.value = PuppetJsClickTrigger$;
+        jsonpatch.apply(that.obj, [patch]);
+        that.observe();
+      }
+    });
   };
 
   Puppet.prototype.handleRemoteChange = function (event) {
+    if (!this.observer) {
+      return; //ignore remote change if we are not watching anymore
+    }
     var patches = JSON.parse(event.target.responseText || '[]'); //fault tolerance - empty response string should be treated as empty patch array
+    if (patches.length === void 0) {
+      throw new Error("Patches should be an array");
+    }
+    patches.forEach(function (patch) {
+      if (patch.op === "add" || patch.op === "replace" || patch.op === "test") {
+        recursiveMarkObjNulls(patch);
+      }
+    });
     this.unobserve();
     jsonpatch.apply(this.obj, patches);
     this.observe();
@@ -127,6 +162,9 @@
       history.pushState(null, null, target.href);
       this.changeState(target.href);
     }
+    else if (target.type === 'submit') {
+      event.preventDefault();
+    }
   };
 
   Puppet.prototype.historyHandler = function (/*event*/) {
@@ -134,7 +172,7 @@
   };
 
   Puppet.prototype.xhr = function (url, accept, data, callback) {
-    //this.handleResponseCookie(); //more invasive cookie erasing because sometimes the cookie was still visible in the requests
+    //this.handleResponseCookie();
     eraseCookie('Location'); //more invasive cookie erasing because sometimes the cookie was still visible in the requests
 
     var req = new XMLHttpRequest();
