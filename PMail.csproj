@@ -72,9 +72,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="pmail.html" />
-  </ItemGroup>
-  <ItemGroup>
     <TypedJSON Include="Master.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
