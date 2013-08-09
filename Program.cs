@@ -5,6 +5,8 @@ using Starcounter.Internal;
 class Program {
     static void Main(string[] args) {
 
+        //AppsBootstrapper.Bootstrap(@"c:\github\PMail");
+
         Handle.POST("/init-demo-data", () => {
                 Db.Transaction(() => {
                     Db.SlowSQL("DELETE FROM Mailbox");
@@ -56,7 +58,16 @@ class Program {
         });
 
         Handle.GET("/mails/new-email", () => {
-            return null;
+            PMail p = (PMail)X.GET("/pmail");
+
+            var m = new MailPage() { Html = "partials/newmail.html" };
+
+            m.Transaction = new Transaction();
+            m.Transaction.Add(() => { m.Data = Db.SQL("SELECT m FROM Mail m WHERE Id=?", 123).First; } );
+
+            p.FocusedMail = m;
+
+            return m;
         });
     }
 }
