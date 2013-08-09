@@ -26,7 +26,7 @@ class Program {
 
         Handle.GET("/pmail", () => {
             Master m = (Master)X.GET("/");
-            PMail p = new PMail() { Html = "pmail.html" };
+            PMail p = new PMail() { Html = "partials/pmail.html" };
             p.Mailboxes = Db.SQL("SELECT m FROM Mailbox m");
             m.ApplicationPage = p;
             return p;
@@ -43,7 +43,7 @@ class Program {
             var mail = Db.SQL("SELECT e FROM Mail e WHERE Id=?", id).First;
             PMail p = (PMail)X.GET("/mailboxes/" + mail.Mailbox.Name);
             var page = new MailPage() {
-                Html = "mail.html",
+                Html = "partials/mail.html",
                 Data = mail
             };
             p.FocusedMail = page;
