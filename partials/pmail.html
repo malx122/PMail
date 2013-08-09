@@ -1,6 +1,9 @@
 ﻿<div id="main">
     <nav class="animated flipInY">
-        <a href="/mails/new-email">Compose</a>
+        <div class="header">
+            <a href="/mails/compose">Compose</a>
+        </div>
+        
         <ul>
             <template repeat="{{Mailboxes}}">
                 <li><a href="/mailboxes/{{Name}}">{{Name}}</a></li>

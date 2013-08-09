@@ -86,6 +86,19 @@
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="css\style.css" />
+    <Content Include="elements\x-html.html" />
+    <Content Include="master.html" />
+    <Content Include="partials\mail.html" />
+    <Content Include="partials\compose.html" />
+    <Content Include="partials\pmail.html" />
+    <Content Include="vendor\json-patch-duplex.js" />
+    <Content Include="vendor\mdv_extra.js" />
+    <Content Include="vendor\polymer.min.js" />
+    <Content Include="vendor\puppet.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(StarcounterBin)\Starcounter.MsBuild.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
