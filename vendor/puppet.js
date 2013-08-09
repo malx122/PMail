@@ -110,7 +110,11 @@
   };
 
   Puppet.prototype.handleLocalChange = function (patches) {
-    this.xhr(this.referer || this.remoteUrl, 'application/json-patch+json', JSON.stringify(patches), this.handleRemoteChange.bind(this));
+    var txt = JSON.stringify(patches);
+    if (txt.indexOf('__Jasmine_been_here_before__') > -1) {
+      throw new Error("PuppetJs did not handle Jasmine test case correctly");
+    }
+    this.xhr(this.referer || this.remoteUrl, 'application/json-patch+json', txt, this.handleRemoteChange.bind(this));
     var that = this;
     patches.forEach(function (patch) {
       if ((patch.op === "add" || patch.op === "replace" || patch.op === "test") && patch.value === null) {
