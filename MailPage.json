@@ -1,10 +1,13 @@
 {
   From: {
-    Address: ""
+    Address$: ""
   },
   To: {
-    Address: ""
+    Address$: ""
   },
-  Subject: "",
-  Content: ""
+  Subject$: "",
+  Content$: "",
+
+  Send$: null,
+  Discard$: null
 }

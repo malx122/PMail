@@ -17,12 +17,11 @@
         <a href="/pmail">PMail</a>
     </header>
 
-        <template bind id="root">
-            <template bind="{{ApplicationPage}}">
-               <x-html content="{{Html}}"></x-html>
-            </template>
+    <template bind id="root">
+        <template bind="{{ApplicationPage}}">
+            <x-html content="{{Html}}"></x-html>
         </template>
-
+    </template>
 
 <script>
   var puppet = new Puppet(null, function (obj) { 

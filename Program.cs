@@ -5,23 +5,30 @@ using Starcounter.Internal;
 class Program {
     static void Main(string[] args) {
 
+        AppsBootstrapper.Bootstrap(@"c:\github\PMail");
+
         Handle.POST("/init-demo-data", () => {
-                Db.Transaction(() => {
-                    Db.SlowSQL("DELETE FROM Mailbox");
-                    Db.SlowSQL("DELETE FROM MailAddress");
-                    Db.SlowSQL("DELETE FROM Mail");
-                    var inbox = new Mailbox() { Name = "Inbox" };
-                    var sent = new Mailbox() { Name = "Sent" };
-                    var me = new MailAddress() { Address = "me@example.com" };
-                    var them1 = new MailAddress() { Address = "lisa@them.com" };
-                    var them2 = new MailAddress() { Address = "joe@spammers.com" };
-                    new Mail() { Id=123, From=them1, To=me, Subject="Hi there", Content="How are you", Mailbox=inbox };
-                    new Mail() { Id=124, From=them2, To=me, Subject="Buy diet pills", Content="Guaranteed results", Mailbox=inbox };
-                    new Mail() { Id=125, From=them2, To=me, Subject="Business opportunity", Content="Call me", Mailbox=inbox };
-                    new Mail() { Id=126, From=me, To=them2, Subject="Re: But diet pill", Content = "No thank you", Mailbox=sent };
-                });
-                return 201;
+            Db.Transaction(() =>
+            {
+                Db.SlowSQL("DELETE FROM Mailbox");
+                Db.SlowSQL("DELETE FROM MailAddress");
+                Db.SlowSQL("DELETE FROM Mail");
+
+                var drafts = new Mailbox() { Name = "Drafts" };
+                var inbox = new Mailbox() { Name = "Inbox" };
+                var sent = new Mailbox() { Name = "Sent" };
+
+                var me = new MailAddress() { Address = "me@example.com" };
+                var them1 = new MailAddress() { Address = "lisa@them.com" };
+                var them2 = new MailAddress() { Address = "joe@spammers.com" };
+
+                new Mail() { Id = 123, From = them1, To = me, Subject = "Hi there", Content = "How are you", Mailbox = inbox };
+                new Mail() { Id = 124, From = them2, To = me, Subject = "Buy diet pills", Content = "Guaranteed results", Mailbox = inbox };
+                new Mail() { Id = 125, From = them2, To = me, Subject = "Business opportunity", Content = "Call me", Mailbox = inbox };
+                new Mail() { Id = 126, From = me, To = them2, Subject = "Re: But diet pill", Content = "No thank you", Mailbox = sent };
             });
+            return 201;
+        });
 
         Handle.GET("/", () => {
             Master m = new Master() { Html = "master.html" };
@@ -55,8 +62,13 @@ class Program {
             return page;
         });
 
-        Handle.GET("/mails/new-email", () => {
-            return null;
+        Handle.GET("/mails/compose", () => {
+            PMail p = (PMail)X.GET("/pmail");
+            var m = new MailPage() { Html = "partials/compose.html" };
+            m.Transaction = new Transaction();
+            m.Transaction.Add(() => { m.Data = new Mail(); } );
+            p.FocusedMail = m;
+            return m;
         });
     }
 }

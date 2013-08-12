@@ -1,5 +1,9 @@
 ﻿<div id="main">
     <nav class="animated flipInY">
+        <div class="header">
+            <a href="/mails/compose">Compose</a>
+        </div>
+        
         <ul>
             <template repeat="{{Mailboxes}}">
                 <li><a href="/mailboxes/{{Name}}">{{Name}}</a></li>
@@ -20,57 +24,6 @@
             <template bind="{{FocusedMail}}">
                 <li><x-html content="{{Html}}"></x-html></li>
             </template>
-
-            <li>
-                <!-- new mail form -->
-                <!-- should this go to some `new-mail.html` file? - Marcin -->
-                <div class="mail new-mail animated flipInY">
-                    <form id="new-mail">
-                        <div class="header">
-                            <h3>Reply</h3>
-                        </div>
-                        <div class="body">
-                            <div class="form-row">
-                                <label for="to-address">To</label>
-                                <input id="to-address" type="text" list="to-contacts">
-                                <datalist id="to-contacts">
-                                    <option value="anna@example.com">
-                                    <option value="bonnie@example.com">
-                                    <option value="miss.lizzie@example.com">
-                                    <option value="sally@example.com">
-                                    <option value="lucy@example.com">
-                                    <option value="rita@example.com">
-                                    <option value="prudence@example.com">
-                                    <option value="martha@example.com">
-                                    <option value="polythene@example.com">
-                                    <option value="maggie.mae@example.com">
-                                    <option value="michelle@example.com">
-                                    <option value="eleanor.rigby@example.com">
-                                    <option value="julia@example.com">
-                                    <option value="sadie@example.com">
-                                    <option value="lady.madonna@example.com">
-                                </datalist>
-                            </div>                       
-                            <div class="form-row">
-                                <input type="text" placeholder="Subject">
-                            </div>
-                        </div>
-                        <div class="body">
-                            <div class="form-row">
-                                <textarea placeholder="Message text"></textarea>
-                            </div>
-                        </div>  
-                        <div class="body">
-                            <div class="form-row">
-                                <button value="{{Send}}" onclick="this.model.Send = null">Send</button>
-                            </div>
-                        </div>  
-                    </form>
-                </div>
-                <!-- /new mail form -->
-            </li>
-
-
         </ul>
     </article>
 

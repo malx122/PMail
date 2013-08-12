@@ -1,7 +1,7 @@
 using Starcounter;
 
 partial class MailPage : Json<Mail> {
-    public string Uri {
+  public string Uri {
     get {
         return "/mails/" + Data.Id;
     }
@@ -14,4 +14,12 @@ partial class MailPage : Json<Mail> {
   [MailPage.json.To]
   partial class ToObj : Json<MailAddress> {
   }
+
+  void Handle(Input.Send input) {
+      this.Transaction.Commit();
+  }
+
+  void Handle(Input.Discard input) {
+      this.Transaction.Rollback();
+  }  
 }
