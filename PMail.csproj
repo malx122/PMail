@@ -89,7 +89,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="css\style.css" />
-    <Content Include="elements\x-html.html" />
+    <Content Include="vendor\x-html.html" />
     <Content Include="master.html" />
     <Content Include="partials\mail.html" />
     <Content Include="partials\compose.html" />
