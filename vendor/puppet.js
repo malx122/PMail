@@ -49,7 +49,18 @@
     return result;
   }
 
-  var PuppetJsClickTrigger$ = "PuppetJsClickTrigger$";
+  /**
+   * PuppetJsClickTrigger$ contains Unicode symbols for "Null" text rendered stylized using Unicode 
+   * fullwidth characters.
+   * @see: http://en.wikipedia.org/wiki/Fullwidth
+   * 
+   * With PuppetJs, any property having `null` value will be rendered as stylized "Null" text
+   * to emphasize that it probably should be set as empty string instead.
+   * 
+   * The benefit of having this string is that any local change to `null` value (also  
+   * from `null` to `null`) can be detected and sent as `null` to the server.
+   */
+  var PuppetJsClickTrigger$ = "\uFF2E\uFF55\uFF4C\uFF4C";
 
   function recursiveMarkObjNulls(obj) {
     for (var key in obj) {
