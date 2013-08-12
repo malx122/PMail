@@ -10,21 +10,9 @@
                 <label for="to-address">To</label>
                 <input id="to-address" type="text" list="to-contacts" value="{{To.Address$}}">
                 <datalist id="to-contacts">
-                    <option value="anna@example.com">
-                    <option value="bonnie@example.com">
-                    <option value="miss.lizzie@example.com">
-                    <option value="sally@example.com">
-                    <option value="lucy@example.com">
-                    <option value="rita@example.com">
-                    <option value="prudence@example.com">
-                    <option value="martha@example.com">
-                    <option value="polythene@example.com">
-                    <option value="maggie.mae@example.com">
-                    <option value="michelle@example.com">
-                    <option value="eleanor.rigby@example.com">
-                    <option value="julia@example.com">
-                    <option value="sadie@example.com">
-                    <option value="lady.madonna@example.com">
+                    <template repeat="{{To.Options}}">
+                        <option value="{{Address}}">
+                    </template>
                 </datalist>
             </div>                       
             <div class="form-row">

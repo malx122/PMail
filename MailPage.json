@@ -3,7 +3,10 @@
     Address$: ""
   },
   To: {
-    Address$: ""
+    Address$: "",
+	Options: [{
+	  Address: ""
+	}]
   },
   Subject$: "",
   Content$: "",
