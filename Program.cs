@@ -18,8 +18,10 @@ class Program {
                 var inbox = new Mailbox() { Name = "Inbox" };
                 var sent = new Mailbox() { Name = "Sent" };
 
+                var lisa = new Contact() { FirstName = "Lisa", LastName = "Gherardini" };
+
                 var me = new MailAddress() { Address = "me@example.com" };
-                var them1 = new MailAddress() { Address = "lisa@them.com" };
+                var them1 = new MailAddress() { Address = "lisa@them.com", Contact = lisa };
                 var them2 = new MailAddress() { Address = "joe@spammers.com" };
 
                 new Mail() { Id = 123, From = them1, To = me, Subject = "Hi there", Content = "How are you", Mailbox = inbox };
