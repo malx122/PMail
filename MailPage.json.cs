@@ -1,4 +1,5 @@
 using Starcounter;
+using System;
 
 partial class MailPage : Json<Mail> {
   public string Uri {
@@ -24,6 +25,7 @@ partial class MailPage : Json<Mail> {
   }
 
   void Handle(Input.Send input) {
+      Data.Date = DateTime.Now;
       this.Transaction.Commit();
   }
 

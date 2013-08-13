@@ -1,11 +1,13 @@
 ﻿using System.Threading;
 using Starcounter;
+using System;
 
 [Database]
 public class Mail {
     static int GlobalId;
 
     public int Id;
+    public DateTime Date;
     public MailAddress From;
     public MailAddress To;
     public string Subject;
@@ -14,6 +16,7 @@ public class Mail {
 
     public Mail() {
         Id = Interlocked.Increment(ref GlobalId);
+        Date = DateTime.Now;
         From = Db.SQL("SELECT m FROM MailAddress m").First;
         To = new MailAddress();
         Subject = "";
