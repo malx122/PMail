@@ -12,6 +12,7 @@ class Program {
             {
                 Db.SlowSQL("DELETE FROM Mailbox");
                 Db.SlowSQL("DELETE FROM MailAddress");
+                Db.SlowSQL("DELETE FROM Contact");
                 Db.SlowSQL("DELETE FROM Mail");
 
                 var drafts = new Mailbox() { Name = "Drafts" };
