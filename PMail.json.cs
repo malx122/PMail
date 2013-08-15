@@ -1,7 +1,7 @@
 using Starcounter;
 
 partial class PMail : Json {
-    [PMail.json.Mailboxes] /*is this needed? I discovered it only works with this - Marcin*/
+    [PMail.json.Mailboxes]
     partial class MailboxesObj : Json<Mailbox> {
     }
 
