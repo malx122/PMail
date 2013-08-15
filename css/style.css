@@ -120,7 +120,8 @@ form#new-mail button {
 }
 
 form#new-mail textarea,
-form#new-mail input[type=text] {
+form#new-mail input[type=text],
+form#new-mail input:not([type]) {
     font-family: Helvetica, Arial, sans-serif;
     font-size: inherit;
     background: transparent;
@@ -140,6 +141,10 @@ button.delete {
 }
 
 form#new-mail .contact-form-row label {
+    flex: 0 1 100px;
+}
+
+form#new-mail .contact-form-row .narrow {
     flex: 0 1 100px;
 }
 

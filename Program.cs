@@ -19,8 +19,13 @@ class Program {
 
                 var lisa = new Contact() { Id = 91, FirstName = "Lisa", LastName = "Gherardini" };
 
+                var work = new MailAddressRole() { Name = "Work" };
+                var home = new MailAddressRole() { Name = "Home" };
+
                 var me = new MailAddress() { Address = "me@example.com" };
-                var them1 = new MailAddress() { Address = "lisa@them.com", Contact = lisa };
+                var them1 = new MailAddress() { Address = "lisa@them.com", Contact = lisa, Role = home };
+                them1.Role = new MailAddressRole() { Name = "Mistress" };
+
                 var them2 = new MailAddress() { Address = "joe@spammers.com" };
 
                 new Mail() { Id = 123, From = them1, To = me, Subject = "Hi there", Content = "How are you", Mailbox = inbox };

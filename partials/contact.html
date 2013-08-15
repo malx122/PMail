@@ -5,19 +5,40 @@
         </div>
         <div class="body">
             <div class="contact-form-row">
+                <label for="prefix">Prefix</label>
+                <input id="prefix" value="{{NamePrefix$}}">
+            </div>
+            <div class="contact-form-row">
                 <label for="first-name">First Name</label>
-                <input id="first-name" type="text" value="{{FirstName$}}">
+                <input id="first-name" value="{{FirstName$}}">
+            </div>
+            <div class="contact-form-row">
+                <label for="middle-name">Middle Name</label>
+                <input id="middle-name" value="{{MiddleName$}}">
             </div>
             <div class="contact-form-row">
                 <label for="last-name">Last Name</label>
-                <input id="last-name" type="text" value="{{LastName$}}">
+                <input id="last-name" value="{{LastName$}}">
+            </div>
+            <div class="contact-form-row">
+                <label for="suffix">Suffix</label>
+                <input id="suffix" value="{{NameSuffix$}}">
             </div>
         </div>
         <div class="body">
+            <datalist id="role-options">
+               <template repeat="{{MailAddressRoleOptions}}">
+                  <option value="{{Name}}">
+               </template>
+            </datalist>
+
             <template repeat="{{_Addresses}}">
-            <div class="form-row">    
+            <div class="contact-form-row">
                 <label>Email</label>
-                <input type="text" value="{{Address$}}">
+
+                <input class="narrow" value="{{SearchRole$}}" list="role-options" placeholder="Role">
+
+                <input value="{{Address$}}">
                 <button class="delete" value="{{Remove$}}" onclick="this.model.Remove$ = null">Remove</button>    
             </div>
             </template>

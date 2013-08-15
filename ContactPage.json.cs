@@ -2,10 +2,36 @@ using Starcounter;
 using System;
 
 partial class ContactPage : Json<Contact> {
+    protected override void Init() {
+        this.MailAddressRoleOptions = SQL("SELECT r FROM MailAddressRole r");
+    }
+
+    [ContactPage.json.MailAddressRoleOptions]
+    partial class MailAddressRoleOptionsObj : Json<MailAddressRole> {
+    }
+    
     [ContactPage.json._Addresses]
     partial class AddressesObj : Json<MailAddress> {
         void Handle(Input._Addresses.Address input) {
             this.Address = input.Value;
+            this.Transaction.Commit();
+        }
+
+        void Handle(Input._Addresses.Role.SearchRole input) {
+            var role = SQL("SELECT r FROM MailAddressRole r WHERE Name = ?", input.Value).First;
+            if (role != null) {
+                this.Data.Role = role;
+            }
+            else {
+                var newRole = new MailAddressRole();
+                newRole.Name = input.Value;
+                
+                this.Data.Role = newRole;
+
+                Master m = (Master)X.GET("/");
+                PContacts p = (PContacts) m.ApplicationPage;
+                ((ContactPage)p.FocusedContact).MailAddressRoleOptions.Add().Data = newRole;
+            }
             this.Transaction.Commit();
         }
 
@@ -16,13 +42,28 @@ partial class ContactPage : Json<Contact> {
         }
     }
 
+    void Handle(Input.NamePrefix input) {
+        this.NamePrefix = input.Value;
+        this.Transaction.Commit();
+    }
+
     void Handle(Input.FirstName input) {
         this.FirstName = input.Value;
         this.Transaction.Commit();
     }
 
+    void Handle(Input.MiddleName input) {
+        this.MiddleName = input.Value;
+        this.Transaction.Commit();
+    }
+
     void Handle(Input.LastName input) {
         this.LastName = input.Value;
+        this.Transaction.Commit();
+    }
+
+    void Handle(Input.NameSuffix input) {
+        this.NameSuffix = input.Value;
         this.Transaction.Commit();
     }
 
