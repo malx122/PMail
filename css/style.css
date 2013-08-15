@@ -90,7 +90,8 @@ article > ul {
     background: #FFF;
 }
 
-form#new-mail .form-row {
+form#new-mail .form-row,
+form#new-mail .contact-form-row {
     display: flex;
 }
 
@@ -132,6 +133,14 @@ form#new-mail input[type=text] {
 
 form#new-mail textarea {
     flex: 1 1 100%;
+}
+
+button.delete {
+    color: #666;
+}
+
+form#new-mail .contact-form-row label {
+    flex: 0 1 100px;
 }
 
 /* Animations */

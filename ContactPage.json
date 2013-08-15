@@ -1,6 +1,13 @@
 {
+  DisplayName: "",
   FirstName$: "",
   LastName$: "",
 
+  _Addresses: [{
+    Address$: "",
+	Remove$: null
+  }],
+
+  AddAddress$: null,
   Delete$: null
 }

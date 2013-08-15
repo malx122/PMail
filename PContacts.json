@@ -1,8 +1,7 @@
 {
   Contacts: [{
-    FirstName: "",
-	LastName: "",
-	Uri: ""
+    DisplayName: "",
+    Uri: ""
   }],
   FocusedContact: {}
 }
