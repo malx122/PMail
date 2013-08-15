@@ -5,8 +5,6 @@ using Starcounter.Internal;
 class Program {
     static void Main(string[] args) {
 
-        AppsBootstrapper.Bootstrap(@"c:\github\PMail");
-
         Handle.POST("/init-demo-data", () => {
             Db.Transaction(() =>
             {
