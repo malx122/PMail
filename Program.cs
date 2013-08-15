@@ -87,10 +87,10 @@ class Program {
             PContacts p = (PContacts)X.GET("/pcontacts");
             var page = new ContactPage() {
                 Html = "partials/contact.html",
+                Data = contact,
                 _Addresses = contact.Addresses
             };
             page.Transaction = new Transaction();
-            page.Data = contact;
             p.FocusedContact = page;
             return page;
         });
