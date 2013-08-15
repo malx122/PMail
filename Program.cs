@@ -19,7 +19,7 @@ class Program {
                 var inbox = new Mailbox() { Name = "Inbox" };
                 var sent = new Mailbox() { Name = "Sent" };
 
-                var lisa = new Contact() { FirstName = "Lisa", LastName = "Gherardini" };
+                var lisa = new Contact() { Id = 91, FirstName = "Lisa", LastName = "Gherardini" };
 
                 var me = new MailAddress() { Address = "me@example.com" };
                 var them1 = new MailAddress() { Address = "lisa@them.com", Contact = lisa };
@@ -72,6 +72,25 @@ class Program {
             m.Transaction.Add(() => { m.Data = new Mail(); } );
             p.FocusedMail = m;
             return m;
+        });
+
+        Handle.GET("/pcontacts", () => {
+            Master m = (Master)X.GET("/");
+            PContacts p = new PContacts() { Html = "partials/pcontacts.html" };
+            p.Contacts = Db.SQL("SELECT c FROM Contact c");
+            m.ApplicationPage = p;
+            return p;
+        });
+
+        Handle.GET("/contacts/{?}", (int id) => {
+            var contact = Db.SQL("SELECT c FROM Contact c WHERE Id=?", id).First;
+            PContacts p = (PContacts)X.GET("/pcontacts");
+            var page = new ContactPage() {
+                Html = "partials/contact.html",
+                Data = contact
+            };
+            p.FocusedContact = page;
+            return page;
         });
     }
 }

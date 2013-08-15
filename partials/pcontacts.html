@@ -1,0 +1,24 @@
+﻿<div id="main">
+    <nav class="animated flipInY">
+        <div class="header">
+            <a href="/add-contact">Add Contact</a>
+        </div>
+    </nav>
+
+    <nav class="animated flipInY">
+        <ul>
+            <template repeat="{{Contacts}}">
+                <li><a href="{{Uri}}">{{LastName}}, {{FirstName}}</a></li>
+            </template>
+        </ul>
+    </nav>
+
+    <article class="animated flipInY">
+        <ul>
+            <template bind="{{FocusedContact}}">
+                <li><x-html content="{{Html}}"></x-html></li>
+            </template>
+        </ul>
+    </article>
+
+</div>
