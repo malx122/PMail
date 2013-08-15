@@ -8,6 +8,12 @@ partial class ContactPage : Json<Contact> {
             this.Address = input.Value;
             this.Transaction.Commit();
         }
+
+        void Handle(Input._Addresses.Remove input) {
+            this.Parent.Remove(this);
+            this.Data.Delete();
+            this.Transaction.Commit();
+        }
     }
 
     void Handle(Input.FirstName input) {
@@ -25,5 +31,11 @@ partial class ContactPage : Json<Contact> {
         address.Contact = this.Data;
         this._Addresses.Add().Data = address;
         this.Transaction.Commit();
+    }
+
+    void Handle(Input.Delete input) {
+        this.Data.Delete();
+        this.Transaction.Commit();
+        ((PContacts)this.Parent).FocusedContact = null;
     }
 }
