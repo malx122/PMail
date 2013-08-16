@@ -18,6 +18,18 @@
 	}
    ],
 
+  PhoneNumberRoleOptions: [
+	{
+		Name: "Home"
+	},
+	{
+		Name: "Work"
+	},
+	{
+		Name: "Custom"
+	}
+   ],
+
   _Addresses: [{
     Address$: "",
 	Role: {
@@ -29,6 +41,18 @@
 	Remove$: null
   }],
 
+  _PhoneNumbers: [{
+    Number$: "",
+	Role: {
+	  SearchRole$: "",
+	  SelectedRole$: {
+	    name: "Home"
+	  }	  
+	},
+	Remove$: null
+  }],
+
   AddAddress$: null,
+  AddPhoneNumber$: null,
   Delete$: null
 }

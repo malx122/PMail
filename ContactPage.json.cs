@@ -4,6 +4,7 @@ using System;
 partial class ContactPage : Json<Contact> {
     protected override void Init() {
         this.MailAddressRoleOptions = SQL("SELECT r FROM MailAddressRole r");
+        this.PhoneNumberRoleOptions = SQL("SELECT r FROM PhoneNumberRole r");
     }
 
     [ContactPage.json.MailAddressRoleOptions]
@@ -42,6 +43,42 @@ partial class ContactPage : Json<Contact> {
         }
     }
 
+    [ContactPage.json.PhoneNumberRoleOptions]
+    partial class PhoneNumberRoleOptionsObj : Json<PhoneNumberRole> {
+    }
+
+    [ContactPage.json._PhoneNumbers]
+    partial class PhoneNumbersObj : Json<PhoneNumber> {
+        void Handle(Input._PhoneNumbers.Number input) {
+            this.Number = input.Value;
+            this.Transaction.Commit();
+        }
+
+        /*void Handle(Input._Addresses.Role.SearchRole input) {
+            var role = SQL("SELECT r FROM PhoneNumberRole r WHERE Name = ?", input.Value).First;
+            if (role != null) {
+                this.Data.Role = role;
+            }
+            else {
+                var newRole = new MailAddressRole();
+                newRole.Name = input.Value;
+
+                this.Data.Role = newRole;
+
+                Master m = (Master)X.GET("/");
+                PContacts p = (PContacts)m.ApplicationPage;
+                ((ContactPage)p.FocusedContact).MailAddressRoleOptions.Add().Data = newRole;
+            }
+            this.Transaction.Commit();
+        }*/
+
+        void Handle(Input._PhoneNumbers.Remove input) {
+            this.Parent.Remove(this);
+            this.Data.Delete();
+            this.Transaction.Commit();
+        }
+    }
+
     void Handle(Input.NamePrefix input) {
         this.NamePrefix = input.Value;
         this.Transaction.Commit();
@@ -71,6 +108,13 @@ partial class ContactPage : Json<Contact> {
         var address = new MailAddress();
         address.Contact = this.Data;
         this._Addresses.Add().Data = address;
+        this.Transaction.Commit();
+    }
+
+    void Handle(Input.AddPhoneNumber input) {
+        var phoneNumber = new PhoneNumber();
+        phoneNumber.Contact = this.Data;
+        this._PhoneNumbers.Add().Data = phoneNumber;
         this.Transaction.Commit();
     }
 

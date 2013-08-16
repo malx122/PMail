@@ -12,6 +12,7 @@ class Program {
                 Db.SlowSQL("DELETE FROM MailAddress");
                 Db.SlowSQL("DELETE FROM Contact");
                 Db.SlowSQL("DELETE FROM Mail");
+                Db.SlowSQL("DELETE FROM Country");
 
                 var drafts = new Mailbox() { Name = "Drafts" };
                 var inbox = new Mailbox() { Name = "Inbox" };
@@ -27,6 +28,11 @@ class Program {
                 them1.Role = new MailAddressRole() { Name = "Mistress" };
 
                 var them2 = new MailAddress() { Address = "joe@spammers.com" };
+
+                new Country() { Name = "Sweden", DialCode = "+46" };
+                new Country() { Name = "Norway", DialCode = "+47" };
+                new Country() { Name = "Poland", DialCode = "+48" };
+                new Country() { Name = "Germany", DialCode = "+49" };
 
                 new Mail() { Id = 123, From = them1, To = me, Subject = "Hi there", Content = "How are you", Mailbox = inbox };
                 new Mail() { Id = 124, From = them2, To = me, Subject = "Buy diet pills", Content = "Guaranteed results", Mailbox = inbox };
@@ -91,7 +97,8 @@ class Program {
             var page = new ContactPage() {
                 Html = "partials/contact.html",
                 Data = contact,
-                _Addresses = contact.Addresses
+                _Addresses = contact.Addresses,
+                _PhoneNumbers = contact.PhoneNumbers
             };
             page.Transaction = new Transaction();
             p.FocusedContact = page;

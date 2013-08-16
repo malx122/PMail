@@ -59,6 +59,12 @@ public class Contact {
             return Db.SQL<MailAddress>("SELECT m FROM MailAddress m WHERE Contact=?", this);
         }
     }
+
+    public SqlResult<PhoneNumber> PhoneNumbers {
+        get {
+            return Db.SQL<PhoneNumber>("SELECT p FROM PhoneNumber p WHERE Contact=?", this);
+        }
+    }
 }
 
 [Database]
@@ -67,8 +73,8 @@ public class MailAddressRole : Role {
 }
 
 [Database]
-public class PhoneRole : Role {
-    public Country Country;
+public class PhoneNumberRole : Role {
+
 }
 
 [Database]
@@ -83,4 +89,16 @@ public class Role {
     public string Name;
     public string Icon;
     public bool UserDefined;
+}
+
+[Database]
+public class PhoneNumber {
+    public string Number;
+    public Contact Contact;
+    public PhoneNumberRole Role;
+    public Country Country;
+
+    public PhoneNumber() {
+        Number = "";
+    }
 }

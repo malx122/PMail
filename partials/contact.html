@@ -44,6 +44,27 @@
             </template>
             <button value="{{AddAddress$}}" onclick="this.model.AddAddress$ = null">Add email</button>
         </div>  
+
+        <div class="body">
+            <datalist id="phone-number-role-options">
+               <template repeat="{{PhoneNumberRoleOptions}}">
+                  <option value="{{Name}}">
+               </template>
+            </datalist>
+
+            <template repeat="{{_PhoneNumbers}}">
+            <div class="contact-form-row">
+                <label>Phone</label>
+
+                <input class="narrow" value="{{SearchRole$}}" list="phone-number-role-options" placeholder="Role">
+
+                <input value="{{Number$}}">
+                <button class="delete" value="{{Remove$}}" onclick="this.model.Remove$ = null">Remove</button>    
+            </div>
+            </template>
+            <button value="{{AddPhoneNumber$}}" onclick="this.model.AddPhoneNumber$ = null">Add phone</button>
+        </div>  
+
         <div class="body">
             <div class="form-row">
                 <button class="delete" value="{{Delete$}}" onclick="this.model.Delete$ = null">Delete contact</button>
