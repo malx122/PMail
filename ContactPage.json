@@ -32,24 +32,20 @@
 
   _Addresses: [{
     Address$: "",
-	Role: {
-	  SearchRole$: "",
-	  SelectedRole$: {
-	    name: "Home"
-	  }	  
-	},
-	Remove$: null
+    SearchRole$: "",
+    Role: {
+      Name: "Home"
+    },
+    Remove$: null
   }],
 
   _PhoneNumbers: [{
     Number$: "",
-	Role: {
-	  SearchRole$: "",
-	  SelectedRole$: {
-	    name: "Home"
-	  }	  
-	},
-	Remove$: null
+    SearchRole$: "",
+    Role: {
+      Name: "Home"
+    },
+    Remove$: null
   }],
 
   Note$: "",

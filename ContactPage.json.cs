@@ -18,7 +18,7 @@ partial class ContactPage : Json<Contact> {
             this.Transaction.Commit();
         }
 
-        void Handle(Input._Addresses.Role.SearchRole input) {
+        void Handle(Input._Addresses.SearchRole input) {
             var role = SQL("SELECT r FROM MailAddressRole r WHERE Name = ?", input.Value).First;
             if (role != null) {
                 this.Data.Role = role;
@@ -54,23 +54,23 @@ partial class ContactPage : Json<Contact> {
             this.Transaction.Commit();
         }
 
-        /*void Handle(Input._Addresses.Role.SearchRole input) {
+        void Handle(Input._PhoneNumbers.SearchRole input) {
             var role = SQL("SELECT r FROM PhoneNumberRole r WHERE Name = ?", input.Value).First;
             if (role != null) {
                 this.Data.Role = role;
             }
             else {
-                var newRole = new MailAddressRole();
+                var newRole = new PhoneNumberRole();
                 newRole.Name = input.Value;
 
                 this.Data.Role = newRole;
 
                 Master m = (Master)X.GET("/");
                 PContacts p = (PContacts)m.ApplicationPage;
-                ((ContactPage)p.FocusedContact).MailAddressRoleOptions.Add().Data = newRole;
+                ((ContactPage)p.FocusedContact).PhoneNumberRoleOptions.Add().Data = newRole;
             }
             this.Transaction.Commit();
-        }*/
+        }
 
         void Handle(Input._PhoneNumbers.Remove input) {
             this.Parent.Remove(this);

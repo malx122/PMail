@@ -17,6 +17,17 @@ public class MailAddress {
     public MailAddress() {
         Address = "";
     }
+
+    public string SearchRole {
+        get {
+            if (this.Role != null) {
+                return this.Role.Name;
+            }
+            else {
+                return "";
+            }
+        }
+    }
 }
 
 [Database]
@@ -102,5 +113,16 @@ public class PhoneNumber {
 
     public PhoneNumber() {
         Number = "";
+    }
+
+    public string SearchRole {
+        get {
+            if (this.Role != null) {
+                return this.Role.Name;
+            }
+            else {
+                return "";
+            }
+        }
     }
 }
