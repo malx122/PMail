@@ -112,5 +112,16 @@ class Program {
             p.FocusedContact = page;
             return page;
         });
+
+        Handle.GET("/contacts/create", () => {
+            PContacts p = (PContacts)X.GET("/pcontacts");
+            var page = new ContactPage() {
+                Html = "partials/contact.html"
+            };
+            page.Transaction = new Transaction();
+            page.Transaction.Add(() => { page.Data = new Contact(); });
+            p.FocusedContact = page;
+            return page;
+        });
     }
 }

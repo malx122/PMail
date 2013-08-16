@@ -1,4 +1,5 @@
-﻿using Starcounter;
+﻿using System.Threading;
+using Starcounter;
 using System;
 
 //move Mail.cs here after merge with `threads` branch
@@ -32,6 +33,8 @@ public class MailAddress {
 
 [Database]
 public class Contact {
+    static int GlobalId;
+
     public int Id;
     public string NamePrefix;
     public string FirstName;
@@ -41,6 +44,7 @@ public class Contact {
     public string Note;
 
     public Contact() {
+        Id = Interlocked.Increment(ref GlobalId);
         NamePrefix = "";
         FirstName = "";
         MiddleName = "";
