@@ -55,13 +55,11 @@
     <Reference Include="Starcounter.XSON, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d2df1e81d0ca3abf" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contact.cs" />
     <Compile Include="ContactPage.json.cs">
       <DependentUpon>ContactPage.json</DependentUpon>
     </Compile>
-    <Compile Include="MailAddress.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="Mail.cs" />
-    <Compile Include="Mailbox.cs" />
     <Compile Include="Master.json.cs">
       <DependentUpon>Master.json</DependentUpon>
     </Compile>
