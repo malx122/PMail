@@ -104,6 +104,11 @@ partial class ContactPage : Json<Contact> {
         this.Transaction.Commit();
     }
 
+    void Handle(Input.Note input) {
+        this.Note = input.Value;
+        this.Transaction.Commit();
+    }
+
     void Handle(Input.AddAddress input) {
         var address = new MailAddress();
         address.Contact = this.Data;

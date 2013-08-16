@@ -27,6 +27,7 @@ public class Contact {
     public string MiddleName;
     public string LastName;
     public string NameSuffix;
+    public string Note;
 
     public Contact() {
         NamePrefix = "";
@@ -34,6 +35,7 @@ public class Contact {
         MiddleName = "";
         LastName = "";
         NameSuffix = "";
+        Note = "";
     }
 
     public string DisplayName {

@@ -52,6 +52,8 @@
 	Remove$: null
   }],
 
+  Note$: "",
+
   AddAddress$: null,
   AddPhoneNumber$: null,
   Delete$: null

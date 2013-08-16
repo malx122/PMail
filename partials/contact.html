@@ -66,6 +66,17 @@
         </div>  
 
         <div class="body">
+            <div class="contact-form-row">
+                <textarea placeholder="Note" value="{{Note$}}"></textarea>
+                <!-- 
+                Actually `value` is not a valid property for a TEXTAREA but this is an only way to get it to work with MDV
+                MDV issue, see: https://github.com/Polymer/Template-instantiation/issues/80
+                HTML5 spec, see: http://www.w3.org/TR/html5/forms.html#the-textarea-element
+                -->
+            </div>
+        </div>  
+
+        <div class="body">
             <div class="form-row">
                 <button class="delete" value="{{Delete$}}" onclick="this.model.Delete$ = null">Delete contact</button>
             </div>
