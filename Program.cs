@@ -13,6 +13,8 @@ class Program {
                 Db.SlowSQL("DELETE FROM Contact");
                 Db.SlowSQL("DELETE FROM Mail");
                 Db.SlowSQL("DELETE FROM Country");
+                Db.SlowSQL("DELETE FROM MailAddressRole");
+                Db.SlowSQL("DELETE FROM PhoneNumberRole");
 
                 var drafts = new Mailbox() { Name = "Drafts" };
                 var inbox = new Mailbox() { Name = "Inbox" };
@@ -23,9 +25,15 @@ class Program {
                 var work = new MailAddressRole() { Name = "Work" };
                 var home = new MailAddressRole() { Name = "Home" };
 
+                new PhoneNumberRole() { Name = "Mobile" };
+                new PhoneNumberRole() { Name = "Work" };
+                new PhoneNumberRole() { Name = "Home" };
+                new PhoneNumberRole() { Name = "Work Fax" };
+                new PhoneNumberRole() { Name = "Home Fax" };
+
                 var me = new MailAddress() { Address = "me@example.com" };
                 var them1 = new MailAddress() { Address = "lisa@them.com", Contact = lisa, Role = home };
-                them1.Role = new MailAddressRole() { Name = "Mistress" };
+                them1.Role = new MailAddressRole() { Name = "2nd Work" };
 
                 var them2 = new MailAddress() { Address = "joe@spammers.com" };
 
