@@ -117,6 +117,7 @@ public class PhoneNumber {
 
     public PhoneNumber() {
         Number = "";
+        Country = Db.SQL("SELECT c FROM Country c WHERE Name = ?", "Germany").First;
     }
 
     public string SearchRole {
@@ -127,6 +128,20 @@ public class PhoneNumber {
             else {
                 return "";
             }
+        }
+    }
+
+    public int SearchCountry {
+        get {
+            var countries = Db.SQL("SELECT c FROM Country c");
+            var i = 0;
+            foreach (Country c in countries) {
+                if (c.Equals(this.Country)) {
+                    return i;
+                }
+                i++;
+            }
+            return -1;
         }
     }
 }
