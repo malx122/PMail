@@ -58,6 +58,12 @@
 
                 <input class="narrow" value="{{SearchRole$}}" list="phone-number-role-options" placeholder="Role">
 
+                <select selectedIndex="{{SearchCountry$}}">
+                    <template repeat="{{_Countries}}">
+                        <option value="{{Name}}">{{Name}}</option>
+                    </template>
+                </select>
+
                 <input value="{{Number$}}">
                 <button class="delete" value="{{Remove$}}" onclick="this.model.Remove$ = null">Remove</button>    
             </div>

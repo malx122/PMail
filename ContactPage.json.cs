@@ -49,6 +49,18 @@ partial class ContactPage : Json<Contact> {
 
     [ContactPage.json._PhoneNumbers]
     partial class PhoneNumbersObj : Json<PhoneNumber> {
+        protected override void Init() {
+            this._Countries = SQL("SELECT c FROM Country c");
+        }
+
+        [ContactPage.json._PhoneNumbers._Countries]
+        partial class CountriesObj : Json<Country> {
+        }
+
+        [ContactPage.json._PhoneNumbers.Country]
+        partial class CountryObj : Json<Country> {
+        }
+
         void Handle(Input._PhoneNumbers.Number input) {
             this.Number = input.Value;
             this.Transaction.Commit();
@@ -69,6 +81,13 @@ partial class ContactPage : Json<Contact> {
                 PContacts p = (PContacts)m.ApplicationPage;
                 ((ContactPage)p.FocusedContact).PhoneNumberRoleOptions.Add().Data = newRole;
             }
+            this.Transaction.Commit();
+        }
+
+        void Handle(Input._PhoneNumbers.SearchCountry input) {
+            var selectedIndex = Convert.ToInt32(input.Value);
+            this.SearchCountry = selectedIndex;
+            this.Data.Country = (Country)this._Countries[selectedIndex].Data;
             this.Transaction.Commit();
         }
 

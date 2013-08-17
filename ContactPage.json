@@ -45,6 +45,13 @@
     Role: {
       Name: "Home"
     },
+    Country: {
+      Name: ""
+    },
+    SearchCountry$: 0,
+    _Countries: [{
+      Name: ""
+    }],
     Remove$: null
   }],
 
