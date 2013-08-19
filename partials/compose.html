@@ -8,7 +8,7 @@
         <div class="body">
             <div class="form-row">
                 <label for="to-address">To</label>
-                <input id="to-address" type="text" list="to-contacts" value="{{To.Address$}}">
+                <input id="to-address" type="text" list="to-contacts" value="{{To.Address$}}" update-on="input">
                 <datalist id="to-contacts">
                     <template repeat="{{To.Options}}">
                         <option value="{{Address}}">
