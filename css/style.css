@@ -148,6 +148,10 @@ form#new-mail .contact-form-row .narrow {
     flex: 0 1 100px;
 }
 
+form#new-mail .contact-form-row .wide {
+    flex: 0 1 150px;
+}
+
 /* Animations */
 
  .animated {

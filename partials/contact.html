@@ -58,9 +58,9 @@
 
                 <input class="narrow" value="{{SearchRole$}}" list="phone-number-role-options" placeholder="Role">
 
-                <select selectedIndex="{{SearchCountry$}}">
+                <select class="wide" selectedIndex="{{SearchCountry$}}">
                     <template repeat="{{_Countries}}">
-                        <option value="{{Name}}">{{Name}}</option>
+                        <option value="{{Name}}">{{DialCode}} ({{Name}})</option>
                     </template>
                 </select>
 
