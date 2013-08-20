@@ -12,8 +12,6 @@
   Subject$: "",
   Content$: "",
 
-  Send$: null,
-  $Send$:{Bind:null},
-  Discard$: null,
-  $Discard$:{Bind:null}
+  Send$: null
+  Discard$: null
 }

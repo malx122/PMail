@@ -17,6 +17,7 @@
 		Name: "Custom"
 	}
    ],
+   $MailAddressRoleOptions: { Bind:null },
 
   PhoneNumberRoleOptions: [
 	{
@@ -29,6 +30,7 @@
 		Name: "Custom"
 	}
    ],
+   $PhoneNumberRoleOptions: { Bind:null },
 
   _Addresses: [{
     Address$: "",
