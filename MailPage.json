@@ -13,5 +13,7 @@
   Content$: "",
 
   Send$: null,
-  Discard$: null
+  $Send$:{Bind:null},
+  Discard$: null,
+  $Discard$:{Bind:null}
 }
