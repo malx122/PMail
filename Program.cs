@@ -51,7 +51,7 @@ class Program {
         });
 
         Handle.GET("/", () => {
-            Master m = new Master() { Html = "master.html" };
+            Master m = new Master() { Html = "/master.html" };
             Session.Data = m;
             return m;
         });

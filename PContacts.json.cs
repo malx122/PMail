@@ -1,6 +1,6 @@
 using Starcounter;
 
-partial class PContacts : Json {
+partial class PContacts : View<object> {
     [PContacts.json.Contacts]
     partial class ContactsObj : Json<Contact> {
     }

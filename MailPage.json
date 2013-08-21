@@ -1,4 +1,5 @@
 {
+  Html:"",
   Date: "",
   From: {
     Address$: ""
@@ -12,6 +13,6 @@
   Subject$: "",
   Content$: "",
 
-  Send$: null
+  Send$: null,
   Discard$: null
 }

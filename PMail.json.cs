@@ -1,6 +1,6 @@
 using Starcounter;
 
-partial class PMail : Json {
+partial class PMail : View<object> {
     [PMail.json.Mailboxes]
     partial class MailboxesObj : Json<Mailbox> {
     }

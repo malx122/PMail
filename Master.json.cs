@@ -1,5 +1,9 @@
 using Starcounter;
 
-partial class Master : Json {
+partial class Master : View<object> {
     
 }
+
+
+
+
