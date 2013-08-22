@@ -1,22 +1,23 @@
 using Starcounter;
 using System;
 
-partial class MailPage : Json<Mail> {
+[MailPage_json]
+partial class MailPage : View<Mail> {
   public string Uri {
     get {
         return "/mails/" + Data.Id;
     }
    }
 
-  [MailPage.json.From]
+  [MailPage_json.From]
   partial class FromObj : Json<MailAddress> {
   }
 
-  [MailPage.json.To]
+  [MailPage_json.To]
   partial class ToObj : Json<MailAddress> {
   }
 
-  [MailPage.json.To.Options]
+  [MailPage_json.To.Options]
   partial class ToOptionsObj : Json<MailAddress> {
   }
 

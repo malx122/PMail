@@ -1,17 +1,18 @@
 using Starcounter;
 using System;
 
-partial class ContactPage : Json<Contact> {
+[ContactPage_json]
+partial class ContactPage : View<Contact> {
     protected override void Init() {
         this.MailAddressRoleOptions = SQL("SELECT r FROM MailAddressRole r");
         this.PhoneNumberRoleOptions = SQL("SELECT r FROM PhoneNumberRole r");
     }
 
-    [ContactPage.json.MailAddressRoleOptions]
+    [ContactPage_json.MailAddressRoleOptions]
     partial class MailAddressRoleOptionsObj : Json<MailAddressRole> {
     }
     
-    [ContactPage.json._Addresses]
+    [ContactPage_json._Addresses]
     partial class AddressesObj : Json<MailAddress> {
         void Handle(Input._Addresses.Address input) {
             this.Address = input.Value;
