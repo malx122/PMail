@@ -11,8 +11,8 @@ partial class ContactPage : View<Contact> {
     [ContactPage_json.MailAddressRoleOptions]
     partial class MailAddressRoleOptionsObj : Json<MailAddressRole> {
     }
-    
-    [ContactPage_json._Addresses]
+
+    [ContactPage_json.Addresses]
     partial class AddressesObj : Json<MailAddress> {
         void Handle(Input.Address input) {
             this.Address = input.Value;
@@ -44,11 +44,11 @@ partial class ContactPage : View<Contact> {
         }
     }
 
-    [ContactPage.json.PhoneNumberRoleOptions]
+    [ContactPage_json.PhoneNumberRoleOptions]
     partial class PhoneNumberRoleOptionsObj : Json<PhoneNumberRole> {
     }
 
-    [ContactPage.json._PhoneNumbers]
+    [ContactPage_json._PhoneNumbers]
     partial class PhoneNumbersObj : Json<PhoneNumber> {
         protected override void Init() {
             this._Countries = SQL("SELECT c FROM Country c");
