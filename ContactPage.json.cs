@@ -12,7 +12,7 @@ partial class ContactPage : View<Contact> {
     partial class MailAddressRoleOptionsObj : Json<MailAddressRole> {
     }
 
-    [ContactPage_json.Addresses]
+    [ContactPage_json._Addresses]
     partial class AddressesObj : Json<MailAddress> {
         void Handle(Input.Address input) {
             this.Address = input.Value;
@@ -54,11 +54,11 @@ partial class ContactPage : View<Contact> {
             this._Countries = SQL("SELECT c FROM Country c");
         }
 
-        [ContactPage.json._PhoneNumbers._Countries]
+        [ContactPage_json._PhoneNumbers._Countries]
         partial class CountriesObj : Json<Country> {
         }
 
-        [ContactPage.json._PhoneNumbers.Country]
+        [ContactPage_json._PhoneNumbers.Country]
         partial class CountryObj : Json<Country> {
         }
 
