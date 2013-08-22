@@ -51,21 +51,25 @@ class Program {
         });
 
         Handle.GET("/", () => {
-            Master m = new Master() { Html = "/master.html" };
+            Master m = new Master() {
+                Html = (string)X.GET("/master.html")
+            };
             Session.Data = m;
             return m;
         });
 
         Handle.GET("/pmail", () => {
             Master m = (Master)X.GET("/");
-            PMail p = new PMail() { Html = "partials/pmail.html" };
+            PMail p = new PMail() {
+                Html = (string)X.GET("/partials/pmail.html")
+            };
             p.Mailboxes = Db.SQL("SELECT m FROM Mailbox m");
             m.ApplicationPage = p;
             return p;
         });
 
         Handle.GET("/mailboxes/{?}", (string name) => {
-            PMail p = (PMail)X.GET("/pmail");
+            PMail p = PMail.GET("/pmail");
             p.FocusedMailbox.Data = Db.SQL("SELECT m FROM Mailbox m WHERE Name=?", name).First;
             p.Mails = Db.SQL("SELECT e FROM Mail e WHERE Mailbox=?", p.FocusedMailbox.Data);
             return p;
@@ -73,9 +77,9 @@ class Program {
 
         Handle.GET("/mails/{?}", (int id) => {
             var mail = Db.SQL("SELECT e FROM Mail e WHERE Id=?", id).First;
-            PMail p = (PMail)X.GET("/mailboxes/" + mail.Mailbox.Name);
+            var p = (PMail)X.GET("/mailboxes/" + mail.Mailbox.Name);
             var page = new MailPage() {
-                Html = "partials/mail.html",
+                Html = (string)X.GET("/partials/mail.html"),
                 Data = mail
             };
             p.FocusedMail = page;
@@ -83,8 +87,8 @@ class Program {
         });
 
         Handle.GET("/mails/compose", () => {
-            PMail p = (PMail)X.GET("/pmail");
-            var m = new MailPage() { Html = "partials/compose.html" };
+            var p = (PMail)X.GET("/pmail");
+            var m = new MailPage() { Html = (string)X.GET("/partials/compose.html") };
             m.Transaction = new Transaction();
             m.Transaction.Add(() => { m.Data = new Mail(); } );
             p.FocusedMail = m;
@@ -92,8 +96,8 @@ class Program {
         });
 
         Handle.GET("/pcontacts", () => {
-            Master m = (Master)X.GET("/");
-            PContacts p = new PContacts() { Html = "partials/pcontacts.html" };
+            Master m = Master.GET("/");
+            PContacts p = new PContacts() { Html = (string)X.GET("/partials/pcontacts.html") };
             p.Contacts = Db.SQL("SELECT c FROM Contact c");
             m.ApplicationPage = p;
             return p;
@@ -101,9 +105,9 @@ class Program {
 
         Handle.GET("/contacts/{?}", (int id) => {
             var contact = Db.SQL("SELECT c FROM Contact c WHERE Id=?", id).First;
-            PContacts p = (PContacts)X.GET("/pcontacts");
+            var p = PContacts.GET("/pcontacts");
             var page = new ContactPage() {
-                Html = "partials/contact.html",
+                Html = (string)X.GET("/partials/contact.html"),
                 Data = contact,
                 _Addresses = contact.Addresses,
                 _PhoneNumbers = contact.PhoneNumbers
@@ -116,7 +120,7 @@ class Program {
         Handle.GET("/contacts/create", () => {
             PContacts p = (PContacts)X.GET("/pcontacts");
             var page = new ContactPage() {
-                Html = "partials/contact.html"
+                Html = (string)X.GET("/partials/contact.html")
             };
             page.Transaction = new Transaction();
             page.Transaction.Add(() => { page.Data = new Contact(); });
