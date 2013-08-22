@@ -19,11 +19,11 @@ partial class MailPage : View<Mail> {
 
   [MailPage_json.To.Options]
   partial class ToOptionsObj : Json<MailAddress> {
+      void Handle(Input.Address input) {
+          this.To.Options = Db.SQL("SELECT a FROM MailAddress a WHERE a.Address STARTS WITH ?", input.Value);
+      }
   }
 
-  void Handle(Input.To.Address input) {
-      this.To.Options = Db.SQL("SELECT a FROM MailAddress a WHERE a.Address STARTS WITH ?", input.Value);
-  }
 
   void Handle(Input.Send input) {
       Data.Date = DateTime.Now;

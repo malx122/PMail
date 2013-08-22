@@ -14,12 +14,12 @@ partial class ContactPage : View<Contact> {
     
     [ContactPage_json._Addresses]
     partial class AddressesObj : Json<MailAddress> {
-        void Handle(Input._Addresses.Address input) {
+        void Handle(Input.Address input) {
             this.Address = input.Value;
             this.Transaction.Commit();
         }
 
-        void Handle(Input._Addresses.SearchRole input) {
+        void Handle(Input.SearchRole input) {
             var role = SQL("SELECT r FROM MailAddressRole r WHERE Name = ?", input.Value).First;
             if (role != null) {
                 this.Data.Role = role;
@@ -37,7 +37,7 @@ partial class ContactPage : View<Contact> {
             this.Transaction.Commit();
         }
 
-        void Handle(Input._Addresses.Remove input) {
+        void Handle(Input.Remove input) {
             this.Parent.Remove(this);
             this.Data.Delete();
             this.Transaction.Commit();
@@ -62,12 +62,12 @@ partial class ContactPage : View<Contact> {
         partial class CountryObj : Json<Country> {
         }
 
-        void Handle(Input._PhoneNumbers.Number input) {
+        void Handle(Input.Number input) {
             this.Number = input.Value;
             this.Transaction.Commit();
         }
 
-        void Handle(Input._PhoneNumbers.SearchRole input) {
+        void Handle(Input.SearchRole input) {
             var role = SQL("SELECT r FROM PhoneNumberRole r WHERE Name = ?", input.Value).First;
             if (role != null) {
                 this.Data.Role = role;
@@ -85,14 +85,14 @@ partial class ContactPage : View<Contact> {
             this.Transaction.Commit();
         }
 
-        void Handle(Input._PhoneNumbers.SearchCountry input) {
+        void Handle(Input.SearchCountry input) {
             var selectedIndex = Convert.ToInt32(input.Value);
             this.SearchCountry = selectedIndex;
             this.Data.Country = (Country)this._Countries[selectedIndex].Data;
             this.Transaction.Commit();
         }
 
-        void Handle(Input._PhoneNumbers.Remove input) {
+        void Handle(Input.Remove input) {
             this.Parent.Remove(this);
             this.Data.Delete();
             this.Transaction.Commit();
