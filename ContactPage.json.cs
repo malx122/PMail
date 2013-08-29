@@ -1,19 +1,24 @@
 using Starcounter;
 using System;
+using Starcounter.Advanced;
+using Starcounter.Templates;
 
 [ContactPage_json]
-partial class ContactPage : View<Contact> {
+[BindChildren(Bound.Auto)]
+partial class ContactPage : View {
     protected override void Init() {
-        this.MailAddressRoleOptions = SQL("SELECT r FROM MailAddressRole r");
-        this.PhoneNumberRoleOptions = SQL("SELECT r FROM PhoneNumberRole r");
+        this.MailAddressRoleOptions = Db.SQL("SELECT r FROM MailAddressRole r");
+        this.PhoneNumberRoleOptions = Db.SQL("SELECT r FROM PhoneNumberRole r");
     }
 
+	[BindChildren(Bound.Auto)]
     [ContactPage_json.MailAddressRoleOptions]
-    partial class MailAddressRoleOptionsObj : Json<MailAddressRole> {
+    partial class MailAddressRoleOptionsObj : Json {
     }
 
+	[BindChildren(Bound.Auto)]
     [ContactPage_json._Addresses]
-    partial class AddressesObj : Json<MailAddress> {
+    partial class AddressesObj : Json {
         void Handle(Input.Address input) {
             this.Address = input.Value;
             this.Transaction.Commit();
@@ -22,17 +27,17 @@ partial class ContactPage : View<Contact> {
         void Handle(Input.SearchRole input) {
             var role = SQL("SELECT r FROM MailAddressRole r WHERE Name = ?", input.Value).First;
             if (role != null) {
-                this.Data.Role = role;
+                ((MailAddress)(this.Data)).Role = role;
             }
             else {
                 var newRole = new MailAddressRole();
                 newRole.Name = input.Value;
-                
-                this.Data.Role = newRole;
+
+				((MailAddress)(this.Data)).Role = newRole;
 
                 Master m = (Master)X.GET("/");
                 PContacts p = (PContacts) m.ApplicationPage;
-                ((ContactPage)p.FocusedContact).MailAddressRoleOptions.Add().Data = newRole;
+                ((ContactPage)p.FocusedContact).MailAddressRoleOptions.Add().Data = (IBindable)newRole;
             }
             this.Transaction.Commit();
         }
@@ -44,22 +49,26 @@ partial class ContactPage : View<Contact> {
         }
     }
 
+	[BindChildren(Bound.Auto)]
     [ContactPage_json.PhoneNumberRoleOptions]
-    partial class PhoneNumberRoleOptionsObj : Json<PhoneNumberRole> {
+    partial class PhoneNumberRoleOptionsObj : Json {
     }
 
+	[BindChildren(Bound.Auto)]
     [ContactPage_json._PhoneNumbers]
-    partial class PhoneNumbersObj : Json<PhoneNumber> {
+    partial class PhoneNumbersObj : Json {
         protected override void Init() {
             this._Countries = SQL("SELECT c FROM Country c");
         }
 
+		[BindChildren(Bound.Auto)]
         [ContactPage_json._PhoneNumbers._Countries]
-        partial class CountriesObj : Json<Country> {
+        partial class CountriesObj : Json {
         }
 
+		[BindChildren(Bound.Auto)]
         [ContactPage_json._PhoneNumbers.Country]
-        partial class CountryObj : Json<Country> {
+        partial class CountryObj : Json {
         }
 
         void Handle(Input.Number input) {
@@ -70,17 +79,17 @@ partial class ContactPage : View<Contact> {
         void Handle(Input.SearchRole input) {
             var role = SQL("SELECT r FROM PhoneNumberRole r WHERE Name = ?", input.Value).First;
             if (role != null) {
-                this.Data.Role = role;
+				((PhoneNumber)(this.Data)).Role = role;
             }
             else {
                 var newRole = new PhoneNumberRole();
                 newRole.Name = input.Value;
 
-                this.Data.Role = newRole;
+				((PhoneNumber)(this.Data)).Role = newRole;
 
                 Master m = (Master)X.GET("/");
                 PContacts p = (PContacts)m.ApplicationPage;
-                ((ContactPage)p.FocusedContact).PhoneNumberRoleOptions.Add().Data = newRole;
+                ((ContactPage)p.FocusedContact).PhoneNumberRoleOptions.Add().Data = (IBindable)newRole;
             }
             this.Transaction.Commit();
         }
@@ -88,7 +97,7 @@ partial class ContactPage : View<Contact> {
         void Handle(Input.SearchCountry input) {
             var selectedIndex = Convert.ToInt32(input.Value);
             this.SearchCountry = selectedIndex;
-            this.Data.Country = (Country)this._Countries[selectedIndex].Data;
+			((PhoneNumber)(this.Data)).Country = (Country)this._Countries[selectedIndex].Data;
             this.Transaction.Commit();
         }
 
@@ -131,15 +140,15 @@ partial class ContactPage : View<Contact> {
 
     void Handle(Input.AddAddress input) {
         var address = new MailAddress();
-        address.Contact = this.Data;
-        this._Addresses.Add().Data = address;
+        address.Contact = (Contact)this.Data;
+        this._Addresses.Add().Data = (IBindable)address;
         this.Transaction.Commit();
     }
 
     void Handle(Input.AddPhoneNumber input) {
         var phoneNumber = new PhoneNumber();
-        phoneNumber.Contact = this.Data;
-        this._PhoneNumbers.Add().Data = phoneNumber;
+        phoneNumber.Contact = (Contact)this.Data;
+        this._PhoneNumbers.Add().Data = (IBindable)phoneNumber;
         this.Transaction.Commit();
     }
 

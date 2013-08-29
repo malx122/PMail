@@ -1,6 +1,8 @@
 ﻿
 using Starcounter;
+using Starcounter.Advanced;
 using Starcounter.Internal;
+using Starcounter.Templates;
 
 class Program {
     static void Main(string[] args) {
@@ -70,27 +72,28 @@ class Program {
 
         Handle.GET("/mailboxes/{?}", (string name) => {
             PMail p = PMail.GET("/pmail");
-            p.FocusedMailbox.Data = Db.SQL("SELECT m FROM Mailbox m WHERE Name=?", name).First;
+            p.FocusedMailbox.Data = (IBindable)Db.SQL("SELECT m FROM Mailbox m WHERE Name=?", name).First;
             p.Mails = Db.SQL("SELECT e FROM Mail e WHERE Mailbox=?", p.FocusedMailbox.Data);
             return p;
         });
 
         Handle.GET("/mails/{?}", (int id) => {
-            var mail = Db.SQL("SELECT e FROM Mail e WHERE Id=?", id).First;
+            var mail = Db.SQL<Mail>("SELECT e FROM Mail e WHERE Id=?", id).First;
             var p = (PMail)X.GET("/mailboxes/" + mail.Mailbox.Name);
             var page = new MailPage() {
                 Html = (string)X.GET("/partials/mail.html"),
-                Data = mail
+                Data = (IBindable)mail
             };
+			page.Template.BindChildren = Bound.Auto;
             p.FocusedMail = page;
             return page;
         });
 
         Handle.GET("/mails/compose", () => {
             var p = (PMail)X.GET("/pmail");
-            var m = new MailPage() { Html = (string)X.GET("/partials/compose.html") };
+			var m = new MailPage() { Html = (string)X.GET("/partials/compose.html") };
             m.Transaction = new Transaction();
-            m.Transaction.Add(() => { m.Data = new Mail(); } );
+            m.Transaction.Add(() => { m.Data = (IBindable)new Mail(); } );
             p.FocusedMail = m;
             return m;
         });
@@ -104,11 +107,11 @@ class Program {
         });
 
         Handle.GET("/contacts/{?}", (int id) => {
-            var contact = Db.SQL("SELECT c FROM Contact c WHERE Id=?", id).First;
+            var contact = Db.SQL<Contact>("SELECT c FROM Contact c WHERE Id=?", id).First;
             var p = PContacts.GET("/pcontacts");
             var page = new ContactPage() {
                 Html = (string)X.GET("/partials/contact.html"),
-                Data = contact,
+                Data = (IBindable)contact,
                 _Addresses = contact.Addresses,
                 _PhoneNumbers = contact.PhoneNumbers
             };
@@ -123,7 +126,7 @@ class Program {
                 Html = (string)X.GET("/partials/contact.html")
             };
             page.Transaction = new Transaction();
-            page.Transaction.Add(() => { page.Data = new Contact(); });
+            page.Transaction.Add(() => { page.Data = (IBindable)new Contact(); });
             p.FocusedContact = page;
             return page;
         });

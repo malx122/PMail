@@ -117,7 +117,7 @@ public class PhoneNumber {
 
     public PhoneNumber() {
         Number = "";
-        Country = Db.SQL("SELECT c FROM Country c WHERE Name = ?", "Germany").First;
+        Country = Db.SQL<Country>("SELECT c FROM Country c WHERE Name = ?", "Germany").First;
     }
 
     public string SearchRole {

@@ -17,11 +17,11 @@ public class Mail {
     public Mail() {
         Id = Interlocked.Increment(ref GlobalId);
         Date = DateTime.Now;
-        From = Db.SQL("SELECT m FROM MailAddress m").First;
+        From = Db.SQL<MailAddress>("SELECT m FROM MailAddress m").First;
         To = new MailAddress();
         Subject = "";
         Content = "";
-        Mailbox = Db.SQL("SELECT m FROM Mailbox m").First;
+        Mailbox = Db.SQL<Mailbox>("SELECT m FROM Mailbox m").First;
     }
 
 	public string Uri {
