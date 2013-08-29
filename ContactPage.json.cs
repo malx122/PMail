@@ -6,7 +6,7 @@ using Starcounter.Templates;
 [ContactPage_json]
 [BindChildren(Bound.Auto)]
 partial class ContactPage : View {
-    protected override void Init() {
+    protected override void OnData() {
         this.MailAddressRoleOptions = Db.SQL("SELECT r FROM MailAddressRole r");
         this.PhoneNumberRoleOptions = Db.SQL("SELECT r FROM PhoneNumberRole r");
     }
@@ -57,7 +57,7 @@ partial class ContactPage : View {
 	[BindChildren(Bound.Auto)]
     [ContactPage_json._PhoneNumbers]
     partial class PhoneNumbersObj : Json {
-        protected override void Init() {
+        protected override void OnData() {
             this._Countries = SQL("SELECT c FROM Country c");
         }
 
