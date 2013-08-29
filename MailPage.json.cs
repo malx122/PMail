@@ -2,7 +2,6 @@ using Starcounter;
 using System;
 using Starcounter.Templates;
 
-[BindChildren(Bound.Auto)]
 [MailPage_json]
 partial class MailPage : View {
   public string Uri {
@@ -11,12 +10,10 @@ partial class MailPage : View {
     }
    }
 
-	[BindChildren(Bound.Auto)]
   [MailPage_json.From]
   partial class FromObj : Json {
   }
 
-	[BindChildren(Bound.Auto)]
   [MailPage_json.To]
   partial class ToObj : Json {
 	  void Handle(Input.Address input) {
@@ -24,7 +21,6 @@ partial class MailPage : View {
 	  }
   }
 
-	[BindChildren(Bound.Auto)]
   [MailPage_json.To.Options]
   partial class ToOptionsObj : Json {
   }

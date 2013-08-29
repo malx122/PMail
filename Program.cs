@@ -84,7 +84,6 @@ class Program {
                 Html = (string)X.GET("/partials/mail.html"),
                 Data = (IBindable)mail
             };
-			page.Template.BindChildren = Bound.Auto;
             p.FocusedMail = page;
             return page;
         });

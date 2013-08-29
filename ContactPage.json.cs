@@ -4,19 +4,16 @@ using Starcounter.Advanced;
 using Starcounter.Templates;
 
 [ContactPage_json]
-[BindChildren(Bound.Auto)]
 partial class ContactPage : View {
     protected override void OnData() {
         this.MailAddressRoleOptions = Db.SQL("SELECT r FROM MailAddressRole r");
         this.PhoneNumberRoleOptions = Db.SQL("SELECT r FROM PhoneNumberRole r");
     }
 
-	[BindChildren(Bound.Auto)]
     [ContactPage_json.MailAddressRoleOptions]
     partial class MailAddressRoleOptionsObj : Json {
     }
 
-	[BindChildren(Bound.Auto)]
     [ContactPage_json._Addresses]
     partial class AddressesObj : Json {
         void Handle(Input.Address input) {
@@ -49,24 +46,20 @@ partial class ContactPage : View {
         }
     }
 
-	[BindChildren(Bound.Auto)]
     [ContactPage_json.PhoneNumberRoleOptions]
     partial class PhoneNumberRoleOptionsObj : Json {
     }
 
-	[BindChildren(Bound.Auto)]
     [ContactPage_json._PhoneNumbers]
     partial class PhoneNumbersObj : Json {
         protected override void OnData() {
             this._Countries = SQL("SELECT c FROM Country c");
         }
 
-		[BindChildren(Bound.Auto)]
         [ContactPage_json._PhoneNumbers._Countries]
         partial class CountriesObj : Json {
         }
 
-		[BindChildren(Bound.Auto)]
         [ContactPage_json._PhoneNumbers.Country]
         partial class CountryObj : Json {
         }
