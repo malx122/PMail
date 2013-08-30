@@ -1,5 +1,3 @@
-<!-- new mail form -->
-<!-- should this go to some `new-mail.html` file? - Marcin -->
 <div class="mail new-mail animated flipInY">
     <form id="new-mail">
         <div class="header">
@@ -21,12 +19,7 @@
         </div>
         <div class="body">
             <div class="form-row">
-                <textarea placeholder="Message text" value="{{Content$}}"></textarea>
-                <!-- 
-                Actually `value` is not a valid property for a TEXTAREA but this is an only way to get it to work with MDV
-                MDV issue, see: https://github.com/Polymer/Template-instantiation/issues/80
-                HTML5 spec, see: http://www.w3.org/TR/html5/forms.html#the-textarea-element
-                -->
+                <textarea placeholder="Message text" value="{{Content$}}"></textarea> <!--  Actually `value` is not a valid property for a TEXTAREA but this is an only way to get it to work with MDV. MDV issue, see: https://github.com/Polymer/Template-instantiation/issues/80. HTML5 spec, see: http://www.w3.org/TR/html5/forms.html#the-textarea-element -->
             </div>
         </div>  
         <div class="body">
@@ -37,4 +30,3 @@
         </div>
     </form>
 </div>
-<!-- /new mail form --> 

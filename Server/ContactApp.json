@@ -1,0 +1,30 @@
+{
+  Html:"", 
+  Contacts: [{
+    DisplayName: "",
+    Uri: ""
+  }],
+  FocusedContact: {
+      Html:"",
+      DisplayName: "",
+      NamePrefix$: "",
+      FirstName$: "",
+      MiddleName$: "",
+      LastName$: "",
+      NameSuffix$: "",
+
+      MailAddressRoleOptions: [ { Name: "Home" } ],
+      PhoneNumberRoleOptions: [{ Name: "Home" } ],
+
+      Addresses: [ { Address$: "", SearchRole$: "", Role: { Name: "Home" }, Remove$: null }],
+      PhoneNumbers: [ { Number$: "", SearchRole$: "", Role: { Name: "Home" },
+
+      Country: { Name: "", DialCode: "" }, SearchCountry$: 0, Countries: [{Name: "",	DialCode: "" }], Remove$: null }],
+
+      Note$: "",
+
+      AddAddress$: null,
+      AddPhoneNumber$: null,
+      Delete$: null
+   }
+}

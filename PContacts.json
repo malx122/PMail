@@ -1,8 +1,0 @@
-{
-  Html:"", 
-  Contacts: [{
-    DisplayName: "",
-    Uri: ""
-  }],
-  FocusedContact: {}
-}

@@ -72,70 +72,67 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContactPage.json.cs">
-      <DependentUpon>ContactPage.json</DependentUpon>
-    </Compile>
-    <Compile Include="Database.cs" />
-    <Compile Include="Mail.cs" />
-    <Compile Include="Master.json.cs">
+    <Compile Include="Database\Contact.cs" />
+    <Compile Include="Database\EmailAddress.cs" />
+    <Compile Include="Database\EmailAddressRole.cs" />
+    <Compile Include="Database\Mailbox.cs" />
+    <Compile Include="Database\Thread.cs" />
+    <Compile Include="Database\db.cs" />
+    <Compile Include="Database\Mail.cs" />
+    <Compile Include="Server\Master.json.cs">
       <DependentUpon>Master.json</DependentUpon>
     </Compile>
-    <Compile Include="MailPage.json.cs">
+    <Compile Include="Server\MailPage.json.cs">
       <DependentUpon>MailPage.json</DependentUpon>
     </Compile>
-    <Compile Include="PContacts.json.cs">
-      <DependentUpon>PContacts.json</DependentUpon>
+    <Compile Include="Server\ContactApp.json.cs">
+      <DependentUpon>ContactApp.json</DependentUpon>
     </Compile>
-    <Compile Include="PMail.json.cs">
-      <DependentUpon>PMail.json</DependentUpon>
+    <Compile Include="Server\MailApp.json.cs">
+      <DependentUpon>MailApp.json</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Database\Demodata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View.json.cs">
-      <DependentUpon>View.json</DependentUpon>
+    <Compile Include="Server\Page.json.cs">
+      <DependentUpon>Page.json</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="Master.json">
+    <TypedJSON Include="Server\Master.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="MailPage.json">
+    <TypedJSON Include="Server\MailPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="PMail.json">
+    <TypedJSON Include="Server\MailApp.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="PContacts.json">
+    <TypedJSON Include="Server\ContactApp.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\style.css" />
-    <Content Include="partials\contact.html" />
-    <Content Include="partials\pcontacts.html" />
-    <Content Include="vendor\x-html.html" />
-    <Content Include="master.html" />
-    <Content Include="partials\mail.html" />
-    <Content Include="partials\compose.html" />
-    <Content Include="partials\pmail.html" />
-    <Content Include="vendor\json-patch-duplex.js" />
-    <Content Include="vendor\mdv_extra.js" />
-    <Content Include="vendor\polymer.min.js" />
-    <Content Include="vendor\puppet.js" />
+    <Content Include="Client\css\style.css" />
+    <Content Include="Client\contact.html" />
+    <Content Include="Client\contacts.html" />
+    <Content Include="Client\vendor\x-html.html" />
+    <Content Include="Client\master.html" />
+    <Content Include="Client\email.html" />
+    <Content Include="Client\email-compose.html" />
+    <Content Include="Client\emailboxes.html" />
+    <Content Include="Client\vendor\json-patch-duplex.js" />
+    <Content Include="Client\vendor\mdv_extra.js" />
+    <Content Include="Client\vendor\polymer.min.js" />
+    <Content Include="Client\vendor\puppet.js" />
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="ContactPage.json">
-      <Generator>MsBuild:Compile</Generator>
-    </TypedJSON>
-  </ItemGroup>
-  <ItemGroup>
-    <TypedJSON Include="View.json">
+    <TypedJSON Include="Server\Page.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>

@@ -1,7 +1,7 @@
 using Starcounter;
 
-[View_json]
-partial class View : Json {
+[Page_json]
+partial class Page : Json {
 
     // Browsers will ask for "text/html" and we will give it to them
     // by loading the contents of the URI in our Html property
