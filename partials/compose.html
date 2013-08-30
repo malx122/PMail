@@ -30,15 +30,11 @@
             </div>
         </div>  
         <div class="body">
-            <div class="form-row">
-                <button value="{{Send$}}" onclick="this.model.Send$ = null">Send</button>
-            </div>
+            <polymer-ui-toolbar theme="polymer-ui-light-theme">
+                <polymer-ui-menu-item value="{{Send$}}" onclick="this.model.Send$ = null" icon="dialoga" label="Send" src="" theme="polymer-ui-light-theme" class="polymer-ui-light-theme"></polymer-ui-menu-item>
+                <polymer-ui-menu-item value="{{Discard$}}" onclick="this.model.Discard$ = null" icon="trash" label="Discard" src="" theme="polymer-ui-light-theme" class="polymer-ui-light-theme"></polymer-ui-menu-item>
+            </polymer-ui-toolbar>
         </div>
-        <div class="body">
-            <div class="form-row">
-                <button value="{{Discard$}}" onclick="this.model.Discard$ = null">Discard</button>
-            </div>
-        </div>  
     </form>
 </div>
 <!-- /new mail form --> 

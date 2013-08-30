@@ -140,16 +140,19 @@ button.delete {
     color: #666;
 }
 
-form#new-mail .contact-form-row label {
-    flex: 0 1 100px;
-}
-
-form#new-mail .contact-form-row .narrow {
-    flex: 0 1 100px;
+form#new-mail .contact-form-row label,
+form#new-mail .contact-form-row input.label {
+    flex: 0 0 100px;
 }
 
 form#new-mail .contact-form-row .wide {
-    flex: 0 1 150px;
+    flex: 0 0 150px;
+}
+
+form span.polymer-ui-light-bg {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  display: inline-block
 }
 
 /* Animations */
