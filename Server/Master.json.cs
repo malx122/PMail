@@ -37,11 +37,6 @@ partial class Master : Page {
         });
 
 
-        Handle.GET("/mailboxes/{?}", (string name) => {
-            var p = MailApp.GET("/mailboxes");
-            p.FocusedMailbox.Data = Db.SQL<Mailbox>("SELECT m FROM Mailbox m WHERE Name=?", name).First;
-            return p;
-        });
 
         Handle.GET("/mailboxes/{?}/threads/{?}", (string name, int id) => {
             var thread = Db.SQL<Thread>("SELECT t FROM Thread t WHERE Id=?", id).First;

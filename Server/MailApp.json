@@ -13,9 +13,7 @@
         Subject:"Hi there",
         Content:"Are we cool?"
      }]
-   }
-
-   Hej sotnos. Funkar?
+   },
 
    QuickReply: {
       Html: "/mail.html",
