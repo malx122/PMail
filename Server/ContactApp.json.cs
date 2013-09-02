@@ -11,7 +11,7 @@ partial class ContactApp : Page {
 [ContactApp_json.FocusedContact]
 partial class ContactPage : Page {
     protected override void OnData() {
-        this.MailAddressRoleOptions = Db.SQL("SELECT r FROM MailAddressRole r");
+        this.MailAddressRoleOptions = Db.SQL("SELECT r FROM EmailAddressRole r");
         this.PhoneNumberRoleOptions = Db.SQL("SELECT r FROM PhoneNumberRole r");
     }
     
@@ -63,7 +63,9 @@ partial class AddressesObj : Json, IBound<EmailAddress> {
     }
 
     void Handle(Input.Remove input) {
-            this.Parent.Remove(this);
+        if (this.Parent is Arr) {
+            (this.Parent as Arr).Remove(this);
+        }
             this.Data.Delete();
             this.Transaction.Commit();
     }
@@ -106,7 +108,9 @@ partial class PhoneNumbersObj : Json, IBound<PhoneNumber> {
         }
 
         void Handle(Input.Remove input) {
-            this.Parent.Remove(this);
+            if (Parent is Arr) {
+                (Parent as Arr).Remove(this);
+            }
             this.Data.Delete();
             this.Transaction.Commit();
         }

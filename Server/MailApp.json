@@ -1,23 +1,27 @@
 {
-  Html:"/mails.html", 
+   Html:"/mails.html", 
 
-  Mailboxes: [{ Name: "Inbox" }],
-  FocusedMailbox: { Name: "Inbox" },
-  
-  Threads: [{ From: [{Address:"joe@me.com"}], Subject: "Are we cool?", Uri: "/threads/123", CountMails: 1 }],
-  
-  FocusedThread: {
-     Html: "/thread.html",
-     Mails: [{
-        From: [{Address: "joe@me.com"}],
-        Subject:"Hi there",
-        Content:"Are we cool?"
-     }]
-   },
+   Mailboxes: [{ Name: "Inbox" }],
+    
+   FocusedMailbox: {
+      Name: "Inbox",
 
-   QuickReply: {
-      Html: "/mail.html",
-      To: [{Address:"joe@me.com"}],
-      Content: "Yes, man"
+      Threads: [{ From: {Address:"joe@me.com"}, Subject: "Are we cool?", Uri: "/threads/123", CountMails: 1 }],
+  
+      FocusedThread: {
+         Html: "/thread.html",
+         Uri:"",
+         Mails: [{
+            From: {Address: "joe@me.com"},
+            Subject:"Hi there",
+            Content:"Are we cool?"
+         }]
+      },
+
+      QuickReply: {
+         Html: "/mail.html",
+         To: [{Address:"joe@me.com"}],
+         Content: "Yes, man"
+      }
    }
 }

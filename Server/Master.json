@@ -1,6 +1,11 @@
 {
-  Html:"",
-  LoggedInUser: "",
-  ApplicationPage: {
-  }
+   Html:"",
+   LoggedInUser: { FullName:"" },
+   ApplicationName:"",
+   Menu: { 
+      Items:[
+         { Icon:"", Label:"", Uri:"" }
+      ],
+   },
+   ApplicationPage: { }
 }

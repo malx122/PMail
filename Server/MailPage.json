@@ -8,7 +8,7 @@
     Address$: "",
 	Options: [{
 	  Address: ""
-	}]
+	}] 
   },
   Subject$: "",
   Content$: "",

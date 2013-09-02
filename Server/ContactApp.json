@@ -14,7 +14,9 @@
       NameSuffix$: "",
 
       MailAddressRoleOptions: [ { Name: "Home" } ],
+      $MailAddressRoleOptions: { Bind:null},
       PhoneNumberRoleOptions: [{ Name: "Home" } ],
+      $PhoneNumberRoleOptions: { Bind:null},
 
       Addresses: [ { Address$: "", SearchRole$: "", Role: { Name: "Home" }, Remove$: null }],
       PhoneNumbers: [ { Number$: "", SearchRole$: "", Role: { Name: "Home" },

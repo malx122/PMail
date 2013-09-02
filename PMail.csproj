@@ -41,29 +41,33 @@
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Starcounter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d2df1e81d0ca3abf, processorArchitecture=AMD64">
+    <Reference Include="Starcounter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d2df1e81d0ca3abf, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Level1\bin\Debug\Starcounter.dll</HintPath>
+      <HintPath>C:\sc\Level1\bin\Debug\Starcounter.dll</HintPath>
     </Reference>
     <Reference Include="Starcounter.Bootstrap, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d2df1e81d0ca3abf, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Level1\bin\Debug\Starcounter.Bootstrap.dll</HintPath>
+      <HintPath>C:\sc\Level1\bin\Debug\Starcounter.Bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="Starcounter.Hypermedia, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d2df1e81d0ca3abf, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\sc\Level1\bin\Debug\Starcounter.Hypermedia.dll</HintPath>
     </Reference>
     <Reference Include="Starcounter.Internal, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d2df1e81d0ca3abf, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\level1\bin\Debug\Starcounter.Internal.dll</HintPath>
+      <HintPath>C:\sc\level1\bin\Debug\Starcounter.Internal.dll</HintPath>
     </Reference>
-    <Reference Include="Starcounter.Node, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d2df1e81d0ca3abf, processorArchitecture=MSIL">
+    <Reference Include="Starcounter.Node, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d2df1e81d0ca3abf, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\level1\bin\Debug\Starcounter.Node.dll</HintPath>
+      <HintPath>C:\sc\level1\bin\Debug\Starcounter.Node.dll</HintPath>
     </Reference>
     <Reference Include="Starcounter.REST, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d2df1e81d0ca3abf, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Level1\bin\Debug\Starcounter.REST.dll</HintPath>
+      <HintPath>C:\sc\Level1\bin\Debug\Starcounter.REST.dll</HintPath>
     </Reference>
     <Reference Include="Starcounter.XSON, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d2df1e81d0ca3abf, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Level1\bin\Debug\Starcounter.XSON.dll</HintPath>
+      <HintPath>C:\sc\Level1\bin\Debug\Starcounter.XSON.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -78,7 +82,7 @@
     <Compile Include="Database\Mailbox.cs" />
     <Compile Include="Database\Thread.cs" />
     <Compile Include="Database\db.cs" />
-    <Compile Include="Database\Mail.cs" />
+    <Compile Include="Database\Email.cs" />
     <Compile Include="Server\Master.json.cs">
       <DependentUpon>Master.json</DependentUpon>
     </Compile>
@@ -125,7 +129,7 @@
     <Content Include="Client\master.html" />
     <Content Include="Client\email.html" />
     <Content Include="Client\email-compose.html" />
-    <Content Include="Client\emailboxes.html" />
+    <Content Include="Client\mailboxes.html" />
     <Content Include="Client\vendor\json-patch-duplex.js" />
     <Content Include="Client\vendor\mdv_extra.js" />
     <Content Include="Client\vendor\polymer.min.js" />

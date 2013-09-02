@@ -6,14 +6,15 @@ public class Contact {
     static int GlobalId;
 
     public int Id;
-    public string NamePrefix;
+    public string NamePrefix = "";
     public string FirstName;
     public string MiddleName;
     public string LastName;
     public string NameSuffix;
-    public string Note;
+    public string Note = "test";
 
     public Contact() {
+        MiddleName = "x";
         Id = Interlocked.Increment(ref GlobalId);
     }
 
@@ -31,7 +32,7 @@ public class Contact {
 
     public string Uri { get { return "/contacts/" + Id; } }
 
-    public SqlResult<EmailAddress> Addresses { get { return Db.SQL<EmailAddress>("SELECT m FROM MailAddress m WHERE Contact=?", this); } }
+    public SqlResult<EmailAddress> Addresses { get { return Db.SQL<EmailAddress>("SELECT m FROM EmailAddress m WHERE Contact=?", this); } }
 
     public SqlResult<PhoneNumber> PhoneNumbers  { get { return Db.SQL<PhoneNumber>("SELECT p FROM PhoneNumber p WHERE Contact=?", this); } }
 }

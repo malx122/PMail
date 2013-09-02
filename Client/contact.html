@@ -28,12 +28,12 @@
         </div>
         <div class="body">
             <datalist id="role-options">
-                <template repeat="{{MailAddressRoleOptions}}">
+                <template repeat="{{EmailAddressRoleOptions}}">
                     <option value="{{Name}}">
                 </template>
             </datalist>
 
-            <template repeat="{{_Addresses}}">
+            <template repeat="{{Addresses}}">
                 <div class="contact-form-row">
                     <input class="label" value="{{SearchRole$}}" list="role-options" placeholder="Email">
 
@@ -57,7 +57,7 @@
                 </template>
             </datalist>
 
-            <template repeat="{{_PhoneNumbers}}">
+            <template repeat="{{PhoneNumbers}}">
                 <div class="contact-form-row">
                     <input class="label" value="{{SearchRole$}}" list="phone-number-role-options" placeholder="Phone">
 
