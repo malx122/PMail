@@ -16,53 +16,40 @@
     <link rel="import" href="/vendor/polymer-ui-elements/polymer-ui-icon-button/polymer-ui-icon-button.html">
     <link rel="import" href="/vendor/polymer-ui-elements/polymer-ui-menu-item/polymer-ui-menu-item.html">
     <link rel="import" href="/vendor/polymer-ui-elements/polymer-ui-toolbar/polymer-ui-toolbar.html">
+    <link rel="import" href="/vendor/polymer-ui-elements/polymer-ui-tabs/polymer-ui-tabs.html">
     <link rel="stylesheet" href="/vendor/polymer-ui-elements/basic.css">
-    <style>
-      
-      body {
-        display: flex;
-        flex-flow: column;
-        margin:0;
-      }
-
-      #middle {
-          display:flex;
-       }
-
-      polymer-ui-sidebar-menu {
-         width: 300px;
-         height:700px;
-      }
-
-       x-html {
-          flex: 1;
-       }
-
-       .action {
-          background:red;
-       }
-
-    </style>
 </head>
 
 <body class="polymer-ui-body-text" theme="polymer-ui-dark-theme">
-   <template bind id="root">
-      <div><a href="/">Mails</a> <a href="/contacts">Contacts</a></div>
-      <div id="middle">
-         <polymer-ui-sidebar-menu selected="0" label="{{ApplicationName}}">
-            <template repeat="{{Menu.Items}}">
-                  <a is="polymer-ui-menu-item"
-                   href="{{Uri}}" class="{{ action: true }}"
-                   label="{{Label}}"></a>
-            </template>
-            <div is="polymer-ui-menu-item" icon="settings" label="Settings"></div>
-        </polymer-ui-sidebar-menu>
+    <template bind id="root">
 
-         <template bind="{{ApplicationPage}}">
-            <x-html content="{{Html}}"></x-html>
-         </template>
-      </div>
-   </template>
+        <polymer-flex-layout vertical></polymer-flex-layout>
+
+        <polymer-ui-toolbar theme="polymer-ui-dark-theme">
+            <polymer-ui-tabs selected="0">
+                <a href="/">Mails</a>
+                <a href="/contacts">Contacts</a>
+            </polymer-ui-tabs>
+        </polymer-ui-toolbar>
+
+        <div flex>
+            <polymer-flex-layout></polymer-flex-layout>
+            <polymer-ui-sidebar-menu selected="0" label="{{ApplicationName}}">
+
+                <template repeat="{{Menu.Items}}">
+                    <a is="polymer-ui-menu-item"
+                        href="{{Uri}}" class="{{ action: true }}"
+                        label="{{Label}}"></a>
+                </template>
+                <div is="polymer-ui-menu-item" icon="settings" label="Settings"></div>
+           
+            </polymer-ui-sidebar-menu>
+
+            <template bind="{{ApplicationPage}}">
+                <x-html content="{{Html}}" flex></x-html>
+            </template>
+        </div>
+    </template>
    <script>
    var puppet = new Puppet(null, function (obj) { document.getElementById("root").model = obj; });
    </script>

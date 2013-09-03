@@ -1,18 +1,21 @@
-﻿<div id="main">
-    <nav class="animated flipInY">
-        <ul>
-            <template repeat="{{FocusedMailbox.Threads}}">
-                <li><a href="{{Uri}}">{{Subject}}</a>{{CountMails}}</li>
-            </template>
-        </ul>
-    </nav>
+﻿<polymer-flex-layout></polymer-flex-layout>
 
-    <article class="animated flipInY">
-        <ul>
-            <template bind="{{FocusedMailbox.FocusedMail}}">
-                <li><x-html content="{{Html}}"></x-html></li>
-            </template>
-        </ul>
-    </article>
+<polymer-ui-sidebar-menu selected="0" label="" theme="polymer-ui-light-theme">
+        
+    <template repeat="{{FocusedMailbox.Threads}}">
+        <a is="polymer-ui-menu-item"
+            href="{{Uri}}" class="{{ action: true }}"
+            label="{{Subject}} ({{CountMails}})"></a>
+    </template>
+            
+</polymer-ui-sidebar-menu>
+    
+<article flex class="animated flipInY" style="overflow-y: scroll">
+    <ul>
 
-</div>
+        <template bind="{{FocusedMailbox.FocusedThread}}">
+            <li><x-html content="{{Html}}"></x-html></li>
+        </template>
+
+    </ul>
+</article>

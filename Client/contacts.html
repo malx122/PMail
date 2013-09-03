@@ -1,18 +1,21 @@
-﻿<div id="main">
-    <nav class="animated flipInY">
-        <ul>
-            <template repeat="{{Contacts}}">
-                <li><a href="{{Uri}}">{{DisplayName}}</a></li>
-            </template>
-        </ul>
-    </nav>
+﻿<polymer-flex-layout></polymer-flex-layout>
 
-    <article class="animated flipInY">
-        <ul>
-            <template bind="{{FocusedContact}}">
-                <li><x-html content="{{Html}}"></x-html></li>
-            </template>
-        </ul>
-    </article>
+<polymer-ui-sidebar-menu selected="0" label="" theme="polymer-ui-light-theme">
+        
+    <template repeat="{{Contacts}}">
+        <a is="polymer-ui-menu-item"
+            href="{{Uri}}" class="{{ action: true }}"
+            label="{{DisplayName}}"></a>
+    </template>
+            
+</polymer-ui-sidebar-menu>
+    
+<article flex class="animated flipInY" style="overflow-y: scroll">
+    <ul>
 
-</div>
+        <template bind="{{FocusedContact}}">
+            <li><x-html content="{{Html}}"></x-html></li>
+        </template>
+
+    </ul>
+</article>

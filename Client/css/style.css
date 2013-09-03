@@ -1,49 +1,21 @@
-﻿body {
+﻿html {
+    height: 100%;
+    position: relative;
+}
+
+body {
     font: 16px Helvetica, Arial, sans-serif;
     background: #EDEDF4;
+    display: block;
+    height: 100%;
+    position: relative;
+    margin: 0;
 }
 
 /* Flexbox layout */
 
-#main {
-    min-height: 400px;
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-    flex-flow: row;
-}
-
-#main article {
-    margin: 0;
-    padding: 5px;
-    background: #A0C2DE;
-    flex: 3 1 auto;
-    order: 2;
-}
-
-#main nav {
-    margin: 0;
-    padding: 5px;
-    background: #064780;
-    color: #FFF;
-    flex: 0 1 200px;
-    order: 1;
-}
-
-nav a {
-    color: #FFF;
-}
-
-#main nav:nth-child(2) {
-    background: #0854C7;
-}
-
-#main aside {
-    margin: 0;
-    padding: 5px;
-    background: #ccccff;
-    flex: 0 1 200px;
-    order: 3;
+polymer-ui-sidebar-menu {
+    width: 300px;
 }
 
 header, 
@@ -77,18 +49,21 @@ footer {
     margin: 0;
 }
 
-nav > ul, 
 article > ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-/* Forms */
+.action {
+    background:red;
+}
 
-.new-mail {
+.body {
     background: #FFF;
 }
+
+/* Forms */
 
 form#new-mail .form-row,
 form#new-mail .contact-form-row {
