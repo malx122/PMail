@@ -232,7 +232,17 @@
       that.handleResponseCookie();
       that.handleResponseHeader(event.target);
       if (event.target.status >= 400 && event.target.status < 599) {
-        throw new Error("Server responded with error " + event.target.status + " " + event.target.statusText + ". More details in developer tools Network tab");
+        
+         var str = "Server responded with error " + event.target.status + " (" + event.target.statusText + ")";
+
+        if (event.target.status >= 500) {
+           var doc = document.open("text/html");
+           str += "\n" + event.target.response;
+           doc.write(str.replace(/\n/g, "<br />"));
+           doc.close();
+           return;
+        }
+        throw new Error( str );
       }
       else {
         callback.call(that, event);
