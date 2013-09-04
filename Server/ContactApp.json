@@ -13,8 +13,8 @@
       LastName$: "",
       NameSuffix$: "",
 
-      MailAddressRoleOptions: [ { Name: "Home" } ],
-      $MailAddressRoleOptions: { Bind:null},
+      EmailAddressRoleOptions: [ { Name: "Home" } ],
+      $EmailAddressRoleOptions: { Bind:null},
       PhoneNumberRoleOptions: [{ Name: "Home" } ],
       $PhoneNumberRoleOptions: { Bind:null},
 

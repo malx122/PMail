@@ -11,7 +11,7 @@ partial class ContactApp : Page {
 [ContactApp_json.FocusedContact]
 partial class ContactPage : Page {
     protected override void OnData() {
-        this.MailAddressRoleOptions = Db.SQL("SELECT r FROM EmailAddressRole r");
+        this.EmailAddressRoleOptions = Db.SQL("SELECT r FROM EmailAddressRole r");
         this.PhoneNumberRoleOptions = Db.SQL("SELECT r FROM PhoneNumberRole r");
     }
     
@@ -45,7 +45,7 @@ partial class AddressesObj : Json, IBound<EmailAddress> {
     }
 
     void Handle(Input.SearchRole input) {
-            var role = SQL("SELECT r FROM MailAddressRole r WHERE Name = ?", input.Value).First;
+            var role = SQL("SELECT r FROM EmailAddressRole r WHERE Name = ?", input.Value).First;
             if (role != null) {
                 Data.Role = role;
             }
@@ -57,7 +57,7 @@ partial class AddressesObj : Json, IBound<EmailAddress> {
 
                 var m = Master.GET("/");
                 var p = (ContactApp) m.ApplicationPage;
-                p.FocusedContact.MailAddressRoleOptions.Add().Data = (IBindable)newRole;
+                p.FocusedContact.EmailAddressRoleOptions.Add().Data = (IBindable)newRole;
             }
             this.Transaction.Commit();
     }
