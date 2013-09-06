@@ -1,6 +1,8 @@
 {
    Html:"",
    LoggedInUser: { FullName:"" },
+   AutoSave: true,
+
    ApplicationName:"",
    Menu: { 
       Items:[
