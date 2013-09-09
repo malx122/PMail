@@ -38,7 +38,7 @@ license that can be found in the LICENSE file.
 -->
 <link rel="import" href="polymer-xhr.html">
 
-<polymer-element name="polymer-ajax" attributes="url handleAs auto params response">
+<polymer-element name="polymer-ajax" attributes="url handleAs auto params response method">
   <script>
     Polymer('polymer-ajax', {
       /**
@@ -89,10 +89,19 @@ license that can be found in the LICENSE file.
        * @type Object
        * @default null
        */
+      response: null,
+      /**
+       * The HTTP method to use such as 'GET', 'POST', 'PUT', 'DELETE'.
+       * Default is 'GET'.
+       *
+       * @attribute method
+       * @type string
+       * @default ''
+       */
+      method: '',
       created: function() {
         this.xhr = document.createElement('polymer-xhr');
       },
-      response: '',
       receive: function(response, xhr) {
         if (this.isSuccess(xhr)) {
           this.processResponse(xhr);
@@ -165,13 +174,14 @@ license that can be found in the LICENSE file.
        * @method go
        */
       go: function() {
-        var args = {};
+        var args = this.xhrArgs || {};
         args.params = this.params || null;
         if (args.params && typeof(args.params) == 'string') {
           args.params = JSON.parse(args.params);
         }
         args.callback = this.receive.bind(this);
         args.url = this.url;
+        args.method = this.method;
         return args.url && this.xhr.request(args);
       }
     });

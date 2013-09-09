@@ -1,7 +1,7 @@
 <link rel="import" href="web-animations.html">
 <link rel="import" href="polymer-animation-keyframe.html">
 <link rel="import" href="polymer-animation-prop.html">
-<polymer-element name="polymer-animation">
+<polymer-element name="polymer-animation" attributes="target keyframes sample composite duration fillMode easing iterationStart iterationCount delay direction autoplay">
   <script>
     (function() {
       function findTarget(inSelector, inNode) {
@@ -46,12 +46,12 @@
        * @class polymer-animation
        */
        /**
-			  * Fired when the animation starts
-			  * @event animation-start
-				*
+        * Fired when the animation starts
+        * @event animation-start
+        *
         * Fired when the animation completes
         * @event animation-end
-				* 
+        * 
         */
       Polymer('polymer-animation', {
         publish: {
@@ -70,11 +70,17 @@
           // animation
           /**
            * Animation keyframes specified as an array of dictionaries of
-           * <css properties>:<array of values> pairs. For example,
+           * &lt;css properties&gt;:&lt;array of values&gt; pairs. For example,
            * @property keyframes
            * @type Object
            */
           keyframes: null,
+          /**
+           * A custom animation function. Either provide this or keyframes.
+           * @property sample
+           * @type Function
+           */
+          sample: null,
           //accumulate: null, // not working in polyfill
           /**
            * The composition behavior. "replace", "add" or "merge".
@@ -115,11 +121,11 @@
            */
           iterationCount: 1,
           /**
-           * Start delay in milliseconds.
-           * @property startDelay
+           * Delay in milliseconds.
+           * @property delay
            * @type Number
            */
-          startDelay: 0,
+          delay: 0,
           /**
            * "normal", "reverse", "alternate" or "alternate-reverse".
            * @property direction
@@ -149,7 +155,7 @@
             //this.animation && console.log('play', this.animation);
             if (this.animation) {
               this.cancel();
-							this.bindAnimationEvents();
+              this.bindAnimationEvents();
               this.player = document.timeline.play(this.animation);
             }
           });
@@ -204,6 +210,9 @@
         keyframesChanged: function() {
           this.asyncApply();
         },
+        sampleChanged: function() {
+          this.asyncApply();
+        },
         compositeChanged: function() {
           this.asyncApply();
         },
@@ -219,7 +228,7 @@
         iterationCountChanged: function() {
           this.asyncApply();
         },
-        startDelayChanged: function() {
+        delayChanged: function() {
           this.asyncApply();
         },
         directionChanged: function() {
@@ -232,11 +241,11 @@
           var props = {};
           var timing = {
             fillMode: {},
-            easing: {property: 'timingFunction'},
-            startDelay: {isNumber: true},
+            easing: {},
+            delay: {isNumber: true},
             iterationCount: {isNumber: true, allowInfinity: true},
             direction: {},
-            duration: {property: 'iterationDuration', isNumber: true}
+            duration: {property: 'duration', isNumber: true}
           };
           for (t in timing) {
             if (this[t] !== null) {
@@ -249,7 +258,10 @@
         get animationEffect() {
           var props = {};
           var frames = [];
-          if (!this.keyframes) {
+          var effect;
+          if (this.keyframes) {
+            frames = this.keyframes;
+          } else if (!this.sample) {
             var children = this.querySelectorAll('polymer-animation-keyframe');
             if (children.length === 0) {
               children = this.shadowRoot.querySelectorAll('polymer-animation-keyframe');
@@ -257,22 +269,25 @@
             Array.prototype.forEach.call(children, function(c) {
               frames.push(c.properties);
             });
-          } else {
-            frames = this.keyframes;
           }
-          return new KeyframeAnimationEffect(frames, this.composite);
+          if (this.sample) {
+            effect = {sample: this.sample};
+          } else {
+            effect = new KeyframeAnimationEffect(frames, this.composite);
+          }
+          return effect;
         },
-				bindAnimationEvents: function() {
-					if (!this.animation.onstart) {
-						this.animation.onstart = this.animationStartHandler.bind(this);
-					}
-					if (!this.animation.onend) {
-						this.animation.onend = this.animationEndHandler.bind(this);
-					}
-				},
-				animationStartHandler: function() {
-					this.fire('animation-start');
-				},
+        bindAnimationEvents: function() {
+          if (!this.animation.onstart) {
+            this.animation.onstart = this.animationStartHandler.bind(this);
+          }
+          if (!this.animation.onend) {
+            this.animation.onend = this.animationEndHandler.bind(this);
+          }
+        },
+        animationStartHandler: function() {
+          this.fire('animation-start');
+        },
         animationEndHandler: function() {
           this.fire('animation-end');
         }

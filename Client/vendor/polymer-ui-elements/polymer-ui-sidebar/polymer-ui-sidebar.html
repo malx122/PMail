@@ -10,12 +10,25 @@ license that can be found in the LICENSE file.
 /**
  * polymer-ui-sidebar is a sidebar usually on the left side of the main content.
  * 
+ * Example:
+ *
+ *     <polymer-ui-sidebar label="Polymer">
+ *         some content...
+ *     </polymer-ui-sidebar>
+ *
  * @class polymer-ui-sidebar
+ */
+/**
+ * Sidebar header label.
+ *
+ * @attribute label
+ * @type string
+ * @default ''
  */
 -->
 <link rel="import" href="../polymer-ui-theme-aware/polymer-ui-theme-aware.html">
 <link rel="import" href="../../polymer-elements/polymer-flex-layout/polymer-flex-layout.html">
-<link rel="import" href="polymer-ui-sidebar-header.html">
+<link rel="import" href="../polymer-ui-sidebar-header/polymer-ui-sidebar-header.html">
 
 <polymer-element name="polymer-ui-sidebar" extends="polymer-ui-theme-aware" attributes="label">
   <template>
