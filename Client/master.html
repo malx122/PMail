@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="/vendor/polymer-ui-elements/basic.css">
 </head>
 
-<body class="polymer-ui-body-text" theme="polymer-ui-dark-theme">
+<body>
     <template bind id="root">
 
         <polymer-flex-layout vertical></polymer-flex-layout>
@@ -34,7 +34,7 @@
 
         <div flex>
             <polymer-flex-layout></polymer-flex-layout>
-            <polymer-ui-sidebar-menu selected="0" label="{{ApplicationName}}">
+            <polymer-ui-sidebar-menu selected="0" label="{{ApplicationName}}" theme="polymer-ui-dark-theme">
 
                 <template repeat="{{Menu.Items}}">
                     <a is="polymer-ui-menu-item"

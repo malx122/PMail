@@ -1,8 +1,11 @@
 <div class="mail new-mail animated flipInY">
     <form id="new-mail">
-        <div class="header">
-            <h3>Reply</h3>
-        </div>
+        <polymer-ui-toolbar>
+            <div flex>
+                <h2>Reply</h2>
+            </div>
+        </polymer-ui-toolbar>
+
         <div class="body">
             <div class="form-row">
                 <label for="to-address">To</label>
@@ -24,8 +27,8 @@
         </div>  
         <div class="body">
             <polymer-ui-toolbar theme="polymer-ui-light-theme">
-                <polymer-ui-menu-item value="{{Send$}}" onclick="this.model.Send$ = null" icon="dialoga" label="Send" src="" theme="polymer-ui-light-theme" class="polymer-ui-light-theme"></polymer-ui-menu-item>
-                <polymer-ui-menu-item value="{{Discard$}}" onclick="this.model.Discard$ = null" icon="trash" label="Discard" src="" theme="polymer-ui-light-theme" class="polymer-ui-light-theme"></polymer-ui-menu-item>
+                <polymer-ui-menu-item value="{{Send$}}" onclick="this.model.Send$ = null" icon="dialoga" label="Send" src="" theme="polymer-ui-light-theme"></polymer-ui-menu-item>
+                <polymer-ui-menu-item value="{{Discard$}}" onclick="this.model.Discard$ = null" icon="trash" label="Discard" src="" theme="polymer-ui-light-theme"></polymer-ui-menu-item>
             </polymer-ui-toolbar>
         </div>
     </form>

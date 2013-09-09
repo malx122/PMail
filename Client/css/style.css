@@ -5,7 +5,7 @@
 
 body {
     font: 16px Helvetica, Arial, sans-serif;
-    background: #EDEDF4;
+    background: #FFFFFF;
     display: block;
     height: 100%;
     position: relative;
@@ -23,30 +23,32 @@ footer {
     display: block;
     margin: 0;
     padding: 5px;
-    background: #FFF;
+    background: #FFFFFF;
+}
+
+article polymer-ui-toolbar {
+    background: #FFFFFF -webkit-linear-gradient(top, rgba(242,242,242,0.1), rgba(242,242,242,0.3));
+    background: #FFFFFF -moz-linear-gradient(top, rgba(242,242,242,0.1), rgba(242,242,242,0.3));
+    background: #FFFFFF linear-gradient(top, rgba(242,242,242,0.1), rgba(242,242,242,0.3));
+    color: #333333;
+}
+
+polymer-ui-sidebar-menu {
+    background: #F2F2F2;
 }
 
 .mail {
-    background: #EDEDF4;
-    margin: 0.2em;
-    border-radius: 8px;
+    background: #FFFFFF;
 }
 
-.mail .header, .mail .body {
+.mail .body {
     padding: 15px;
 }
 
-.mail .header {
-    background: #CDEFFF;
-    border-radius: 4px 4px 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.mail h2,
-.mail h3 {
-    margin: 0;
+.mail h2 {
+    font-size: 21px;
+    font-weight: normal;
+    margin: 0 0 0 15px;
 }
 
 article > ul {
@@ -57,10 +59,6 @@ article > ul {
 
 .action {
     background:red;
-}
-
-.body {
-    background: #FFF;
 }
 
 /* Forms */

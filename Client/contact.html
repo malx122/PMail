@@ -1,9 +1,10 @@
 ﻿<div class="mail new-mail animated flipInY">
     <form id="new-mail">
-        <div class="header">
-            <h3>{{DisplayName}}</h3>
+        <polymer-ui-toolbar>
+            <div flex><h2>{{DisplayName}}</h2></div>
             <polymer-ui-icon-button icon="trash" value="{{Delete$}}" onclick="this.model.Delete$ = null"></polymer-ui-icon-button>
-        </div>
+        </polymer-ui-toolbar>
+
         <div class="body">
             <div class="contact-form-row">
                 <label for="prefix">Prefix</label>
@@ -44,9 +45,7 @@
 
             <div class="contact-form-row">
                 <label></label>
-                <span class="polymer-ui-light-bg">
-                    <polymer-ui-menu-item value="{{AddAddress$}}" onclick="this.model.AddAddress$ = null" icon="add" label="Add email" src="" theme="polymer-ui-light-theme" class="polymer-ui-light-theme"></polymer-ui-menu-item>
-                </span>
+                <polymer-ui-menu-item value="{{AddAddress$}}" onclick="this.model.AddAddress$ = null" icon="add" label="Add email" src="" theme="polymer-ui-light-theme" class="polymer-ui-light-bg"></polymer-ui-menu-item>
             </div>
         </div>
 
@@ -74,9 +73,7 @@
 
             <div class="contact-form-row">
                 <label></label>
-                <span class="polymer-ui-light-bg">
-                    <polymer-ui-menu-item value="{{AddPhoneNumber$}}" onclick="this.model.AddPhoneNumber$ = null" icon="add" label="Add phone" src="" theme="polymer-ui-light-theme" class="polymer-ui-light-theme"></polymer-ui-menu-item>
-                </span>
+                <polymer-ui-menu-item value="{{AddPhoneNumber$}}" onclick="this.model.AddPhoneNumber$ = null" icon="add" label="Add phone" src="" theme="polymer-ui-light-theme" class="polymer-ui-light-bg"></polymer-ui-menu-item>
             </div>
         </div>
 
