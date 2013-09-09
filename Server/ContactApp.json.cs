@@ -55,7 +55,7 @@ partial class AddressesObj : Json, IBound<EmailAddress> {
 
                 this.Data.Role = newRole;
 
-                var m = Master.GET("/");
+                Master m = Master.GET("/master");
                 var p = (ContactApp) m.ApplicationPage;
                 p.FocusedContact.EmailAddressRoleOptions.Add().Data = (IBindable)newRole;
             }
@@ -93,7 +93,7 @@ partial class PhoneNumbersObj : Json, IBound<PhoneNumber> {
 
 				Data.Role = newRole;
 
-                var m = Master.GET("/");
+                Master m = Master.GET("/master");
                 var p = (ContactApp)m.ApplicationPage;
                 ((ContactPage)p.FocusedContact).PhoneNumberRoleOptions.Add().Data = (IBindable)newRole;
             }
