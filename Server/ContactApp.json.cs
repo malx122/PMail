@@ -52,7 +52,7 @@ partial class ContactPage : Page {
     /// and phone numbers (so the user can pick 'Home' or 'Work' as the role for the phone number for example).
     /// </summary>
     protected override void OnData() {
-        MailAddressRoleOptions = Db.SQL("SELECT r FROM EmailAddressRole r");    // We can assign a SQL result (an enumeratable of objects) to a view-model array. This will create instances of the view-model class of that array and set the Data attribute of each new view-model object.
+        EmailAddressRoleOptions = Db.SQL("SELECT r FROM EmailAddressRole r");    // We can assign a SQL result (an enumeratable of objects) to a view-model array. This will create instances of the view-model class of that array and set the Data attribute of each new view-model object.
         PhoneNumberRoleOptions = Db.SQL("SELECT r FROM PhoneNumberRole r");
     }
     
@@ -95,7 +95,7 @@ partial class AddressesObj : Json, IBound<EmailAddress> {
 
                 Master m = Master.GET("/master");
                 var p = (ContactApp) m.ApplicationPage;
-                p.FocusedContact.MailAddressRoleOptions.Add().Data = newRole;
+                p.FocusedContact.EmailAddressRoleOptions.Add().Data = newRole;
             }
     }
 
