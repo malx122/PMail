@@ -1,28 +1,28 @@
 ﻿<div class="mail animated-flip-right">
-    <form>
+    <form class="contact">
         <polymer-ui-toolbar>
             <div flex><h2>{{DisplayName}}</h2></div>
             <polymer-ui-icon-button icon="trash" value="{{Delete$}}" onclick="this.model.Delete$ = null"></polymer-ui-icon-button>
         </polymer-ui-toolbar>
 
         <div class="body">
-            <div class="contact-form-row">
+            <div class="form-row">
                 <label for="prefix">Prefix</label>
                 <input id="prefix" value="{{NamePrefix$}}">
             </div>
-            <div class="contact-form-row">
+            <div class="form-row">
                 <label for="first-name">First Name</label>
                 <input id="first-name" value="{{FirstName$}}">
             </div>
-            <div class="contact-form-row">
+            <div class="form-row">
                 <label for="middle-name">Middle Name</label>
                 <input id="middle-name" value="{{MiddleName$}}">
             </div>
-            <div class="contact-form-row">
+            <div class="form-row">
                 <label for="last-name">Last Name</label>
                 <input id="last-name" value="{{LastName$}}">
             </div>
-            <div class="contact-form-row">
+            <div class="form-row">
                 <label for="suffix">Suffix</label>
                 <input id="suffix" value="{{NameSuffix$}}">
             </div>
@@ -35,7 +35,7 @@
             </datalist>
 
             <template repeat="{{Addresses}}">
-                <div class="contact-form-row">
+                <div class="form-row">
                     <input class="label" value="{{SearchRole$}}" list="role-options" placeholder="Email">
 
                     <input value="{{Address$}}">
@@ -43,7 +43,7 @@
                 </div>
             </template>
 
-            <div class="contact-form-row">
+            <div class="form-row">
                 <label></label>
                 <polymer-ui-menu-item value="{{AddAddress$}}" onclick="this.model.AddAddress$ = null" icon="add" label="Add email" src="" theme="polymer-ui-light-theme" class="polymer-ui-light-bg"></polymer-ui-menu-item>
             </div>
@@ -57,7 +57,7 @@
             </datalist>
 
             <template repeat="{{PhoneNumbers}}">
-                <div class="contact-form-row">
+                <div class="form-row">
                     <input class="label" value="{{SearchRole$}}" list="phone-number-role-options" placeholder="Phone">
 
                     <select class="wide" selectedIndex="{{SearchCountry$}}">
@@ -71,14 +71,14 @@
                 </div>
             </template>
 
-            <div class="contact-form-row">
+            <div class="form-row">
                 <label></label>
                 <polymer-ui-menu-item value="{{AddPhoneNumber$}}" onclick="this.model.AddPhoneNumber$ = null" icon="add" label="Add phone" src="" theme="polymer-ui-light-theme" class="polymer-ui-light-bg"></polymer-ui-menu-item>
             </div>
         </div>
 
         <div class="body">
-            <div class="contact-form-row">
+            <div class="form-row">
                 <textarea placeholder="Note" value="{{Note$}}"></textarea>
                 <!--
                 Actually `value` is not a valid property for a TEXTAREA but this is an only way to get it to work with MDV

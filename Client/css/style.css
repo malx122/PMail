@@ -63,8 +63,7 @@ article > ul {
 
 /* Forms */
 
-form .form-row,
-form .contact-form-row {
+form .form-row {
     display: flex;
 }
 
@@ -113,12 +112,12 @@ form button.delete {
     color: #666;
 }
 
-form .contact-form-row label,
-form .contact-form-row input.label {
+form.contact label,
+form.contact input.label {
     flex: 0 0 100px;
 }
 
-form .contact-form-row .wide {
+form.contact .wide {
     flex: 0 0 150px;
 }
 
