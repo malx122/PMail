@@ -5,8 +5,6 @@ using System.Threading;
 
 [Database]
 public class Mail {
-    static int GlobalId;
-    public int Id;
     public Thread Thread;
     public DateTime Date;
     public EmailAddress From;
@@ -14,8 +12,17 @@ public class Mail {
     public string Subject;
     public string Content;
     public Mailbox Mailbox;
+
     public Mail() {
-        Id = Interlocked.Increment(ref GlobalId);
         Date = DateTime.Now;
     }
+
+    public string Id
+    {
+        get
+        {
+            return DbHelper.GetObjectID(this);
+        }
+    }
+   
 }

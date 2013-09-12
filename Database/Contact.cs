@@ -3,9 +3,6 @@ using System.Threading;
 
 [Database]
 public class Contact {
-    static int GlobalId;
-
-    public int Id;
     public string NamePrefix = "";
     public string FirstName;
     public string MiddleName;
@@ -15,9 +12,14 @@ public class Contact {
 
     public Contact() {
         MiddleName = "x";
-        Id = Interlocked.Increment(ref GlobalId);
     }
 
+    public string Id {
+        get {
+            return DbHelper.GetObjectID(this);
+        }
+    }
+   
     public string DisplayName {
         get {
             string[] all = new string[] { NamePrefix, FirstName, MiddleName, LastName, NameSuffix };

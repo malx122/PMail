@@ -38,7 +38,7 @@ partial class Master : Page {
             return p;                               // Return the JSON, or the JSON-Patch or the Html depending on what the client asks for.
         });
 
-        Handle.GET("/mailboxes/{?}/threads/{?}", (string name, int id) => {
+        Handle.GET("/mailboxes/{?}/threads/{?}", (string name, string id) => {
             var thread = Db.SQL<Thread>("SELECT t FROM Thread t WHERE Id=?", id).First; // The database object representing a set of emails (a discussion)
             var page = new ThreadPage() {           // The viewmodel/html for the email thread
                 Html = "/thread.html",
@@ -67,7 +67,7 @@ partial class Master : Page {
             return p;
         });
 
-        Handle.GET("/contacts/{?}", (int id) => {
+        Handle.GET("/contacts/{?}", (string id) => {
             var contact = Db.SQL<Contact>("SELECT c FROM Contact c WHERE Id=?", id).First;
             var p = ContactApp.GET("/contacts");
             var page = new ContactPage() {
