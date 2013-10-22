@@ -6,12 +6,12 @@ public class Contact {
     static int GlobalId;
 
     public int Id;
-    public string NamePrefix = "";
+    public string NamePrefix;
     public string FirstName;
     public string MiddleName;
     public string LastName;
     public string NameSuffix;
-    public string Note = "test";
+    public string Note;
 
     public Contact() {
         MiddleName = "x";
