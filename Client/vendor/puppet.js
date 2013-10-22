@@ -258,7 +258,10 @@
         DIV.style.border = '1px solid #dFb5b4';
         DIV.style.background = '#fcf2f2';
         DIV.style.padding = '10px 16px';
-        if (document.body.firstChild) {
+        DIV.style.position = 'absolute';
+        DIV.style.top = '0';
+        DIV.style.left = '0';
+        if (document.body.firstChild && false) { //disable because Chrome shows "Error: Assertion failed" in PMail
           document.body.insertBefore(DIV, document.body.firstChild);
         }
         else {
