@@ -19,7 +19,7 @@ partial class Page : Json {
     protected override void OnData() {
         base.OnData();
         var str = "";
-        Container x = this;
+        Json x = this;
         while (x != null) {
             if (x is Page)
                 str = (x as Page).UriFragment + str;

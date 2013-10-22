@@ -105,8 +105,8 @@ partial class AddressesObj : Json, IBound<EmailAddress> {
     /// </summary>
     /// <param name="input">The event information</param>
     void Handle(Input.Remove input) {
-        if (this.Parent is Arr)
-            (this.Parent as Arr).Remove(this);
+        if (Parent.IsArray)
+            Parent.Remove(this);
         this.Data.Delete();
     }
 }
@@ -140,8 +140,8 @@ partial class PhoneNumbersObj : Json, IBound<PhoneNumber> {
         }
 
         void Handle(Input.Remove input) {
-            if (Parent is Arr)
-                (Parent as Arr).Remove(this);
+            if (Parent.IsArray)
+                Parent.Remove(this);
             Data.Delete();
         }
 }
