@@ -29,6 +29,7 @@
 
       setTimeout(function () {
         var inScripts = customElement.firstChild.content.querySelectorAll('script');
+        inScripts = Array.prototype.slice.call(inScripts, 0); //convert to array
         inScripts.forEach(function (inScript) {
           executeComponentScript(inScript.textContent, customElement, 'script')
         });
