@@ -202,7 +202,7 @@
   };
 
   Puppet.prototype.clickHandler = function (event) {
-    var target = event.target;
+    var target = event.target.impl || event.target; //impl comes from https://github.com/Polymer/ShadowDOM
     if (window.PuppetExternalLink) {
       target = window.PuppetExternalLink;
       window.PuppetExternalLink = null;
